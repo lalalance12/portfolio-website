@@ -1,76 +1,104 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import SocialDropdown from "./SocialDropdown";
 
 export default function Header() {
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("home");
 
-  const isActive = (path: string) => {
-    return pathname === path;
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      setActiveSection(sectionId);
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "skills", "projects", "contact"];
+      const scrollPosition = window.scrollY + 100; // Offset for header height
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once to set initial state
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const getNavItemClass = (sectionId: string) => {
+    const baseClass =
+      "px-4 py-1 rounded-full text-sm transition-all duration-500 ease-out relative overflow-hidden";
+    const isCurrentSection = activeSection === sectionId;
+
+    if (isCurrentSection) {
+      return `${baseClass} font-medium text-white bg-blue-600 dark:bg-blue-500 shadow-lg transform scale-105`;
+    }
+
+    return `${baseClass} text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:scale-105`;
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full px-8 py-6 flex justify-between items-center bg-secondary border-b border-border shadow-sm">
+    <header className="sticky top-0 z-50 w-full px-8 py-6 flex justify-between items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
       <div className="text-xl font-medium flex items-center">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex items-center">
-            <div className="relative">
-              <div className="w-6 h-6 bg-neutral rounded-full flex items-center justify-center"></div>
-            </div>
           </div>
-          <span className="text-neutral font-bold">Portfolio</span>
+          <span className="text-slate-800 dark:text-slate-200 font-bold">
+            Xerxes Portfolio
+          </span>
         </Link>
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-        <div className="w-2 h-2 rounded-full bg-primary absolute left-[-10px]"></div>
-        <nav className="flex items-center rounded-full bg-neutral px-2 py-2 shadow-md border border-border">
-          <Link
-            href="/work"
-            className={`px-4 py-1 rounded-full text-sm transition-colors text-neutral ${
-              isActive("/work") ? "font-medium bg-neutral text-secondary" : ""
-            }`}
+        <div className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-500 absolute left-[-10px]"></div>
+        <nav className="flex items-center rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-2 py-2 shadow-md border border-slate-200/50 dark:border-slate-700/50 transition-all duration-300">
+          <button
+            onClick={() => scrollToSection("home")}
+            className={getNavItemClass("home")}
           >
-            Home
-          </Link>
-          <Link
-            href="/services"
-            className={`px-4 py-1 rounded-full text-sm transition-colors text-neutral ${
-              isActive("/services")
-                ? "font-medium bg-neutral text-secondary"
-                : ""
-            }`}
+            <span className="relative z-10">Home</span>
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className={getNavItemClass("about")}
           >
-            About
-          </Link>
-          <Link
-            href="/approach"
-            className={`px-4 py-1 rounded-full text-sm transition-colors text-neutral ${
-              isActive("/approach")
-                ? "font-medium bg-neutral text-secondary"
-                : ""
-            }`}
+            <span className="relative z-10">About</span>
+          </button>
+          <button
+            onClick={() => scrollToSection("skills")}
+            className={getNavItemClass("skills")}
           >
-            Projects
-          </Link>
-          <Link
-            href="/about"
-            className={`px-4 py-1 rounded-full text-sm transition-colors text-neutral ${
-              isActive("/about") ? "font-medium bg-neutral text-secondary" : ""
-            }`}
+            <span className="relative z-10">Skills</span>
+          </button>
+          <button
+            onClick={() => scrollToSection("projects")}
+            className={getNavItemClass("projects")}
           >
-            Contact
-          </Link>
-          <Link
-            href="/contact"
-            className={`px-4 py-1 rounded-full text-sm transition-colors text-neutral ${
-              isActive("/contact")
-                ? "font-medium bg-neutral text-secondary"
-                : ""
-            }`}
+            <span className="relative z-10">Projects</span>
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className={getNavItemClass("contact")}
           >
-            Resume
-          </Link>
+            <span className="relative z-10">Contact</span>
+          </button>
         </nav>
       </div>
       <SocialDropdown />

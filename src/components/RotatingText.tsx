@@ -7,6 +7,7 @@ const titles = [
   "Web Developer",
   "Frontend Developer",
   "Backend Developer",
+  "AI/ML Enthusiast",
 ];
 
 export default function RotatingText() {
@@ -57,7 +58,7 @@ export default function RotatingText() {
   }, []);
 
   return (
-    <span className="text-primary">
+    <span className="text-blue-600 dark:text-blue-400">
       {displayedText}
       <span
         className={`${

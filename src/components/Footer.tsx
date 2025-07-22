@@ -9,8 +9,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-full"></div>
-              <span className="text-xl font-bold">Lance Portfolio</span>
+              <span className="text-3xl font-bold text-primary ">Xerxes Portfolio</span>
             </div>
             <p className="text-foreground-muted max-w-md mb-6">
               Passionate software engineer creating scalable, efficient, and
@@ -21,7 +20,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex gap-4">
               <a
-                href="mailto:your-email@example.com"
+                href="mailto:lompon.xerxeslancelaurenz@gmail.com"
                 className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
               >
                 <svg
@@ -39,7 +38,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com/in/your-profile"
+                href="https://linkedin.com/in/xerxes-lompon"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
@@ -53,7 +52,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://github.com/your-username"
+                href="https://github.com/lalalance12"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
@@ -67,7 +66,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://discord.gg/your-discord"
+                href="https://discord.com/users/.grindh1412"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
@@ -132,10 +131,10 @@ export default function Footer() {
             <h3 className="font-medium mb-4">Skills</h3>
             <ul className="space-y-3 text-sm text-foreground-muted">
               <li>React & Next.js</li>
-              <li>Laravel & PHP</li>
-              <li>PostgreSQL</li>
-              <li>AWS & Cloud</li>
-              <li>TypeScript</li>
+              <li>Laravel & Django</li>
+              <li>PostgreSQL & AI/ML</li>
+              <li>AWS & Supabase</li>
+              <li>TypeScript & Python</li>
             </ul>
           </div>
         </div>
@@ -143,7 +142,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border-light">
           <p className="text-sm text-foreground-muted mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Lance Portfolio. Built with
+            &copy; {new Date().getFullYear()} Xerxes Portfolio. Built with
             Next.js & Tailwind CSS.
           </p>
         </div>
