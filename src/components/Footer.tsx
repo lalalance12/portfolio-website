@@ -2,16 +2,18 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full py-16 px-8 bg-background text-foreground border-t border-border">
+    <footer className="w-full py-16 px-8 bg-white text-neutral border-t border-border">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-3xl font-bold text-primary ">Xerxes Portfolio</span>
+              <span className="text-3xl font-bold text-primary">
+                Xerxes Portfolio
+              </span>
             </div>
-            <p className="text-foreground-muted max-w-md mb-6">
+            <p className="text-neutral/70 max-w-md mb-6">
               Passionate software engineer creating scalable, efficient, and
               user-centric web applications. Based in the Philippines,
               delivering quality solutions worldwide.
@@ -21,10 +23,10 @@ export default function Footer() {
             <div className="flex gap-4">
               <a
                 href="mailto:lompon.xerxeslancelaurenz@gmail.com"
-                className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
               >
                 <svg
-                  className="w-5 h-5 text-foreground group-hover:text-secondary"
+                  className="w-5 h-5 text-neutral group-hover:text-secondary"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -41,10 +43,10 @@ export default function Footer() {
                 href="https://linkedin.com/in/xerxes-lompon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
               >
                 <svg
-                  className="w-5 h-5 text-foreground group-hover:text-secondary"
+                  className="w-5 h-5 text-neutral group-hover:text-secondary"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -55,10 +57,10 @@ export default function Footer() {
                 href="https://github.com/lalalance12"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
               >
                 <svg
-                  className="w-5 h-5 text-foreground group-hover:text-secondary"
+                  className="w-5 h-5 text-neutral group-hover:text-secondary"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -69,10 +71,10 @@ export default function Footer() {
                 href="https://discord.com/users/.grindh1412"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-neutral rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
               >
                 <svg
-                  className="w-5 h-5 text-foreground group-hover:text-secondary"
+                  className="w-5 h-5 text-neutral group-hover:text-secondary"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -85,7 +87,7 @@ export default function Footer() {
           {/* Navigation */}
           <div>
             <h3 className="font-medium mb-4">Navigation</h3>
-            <ul className="space-y-3 text-sm text-foreground-muted">
+            <ul className="space-y-3 text-sm text-neutral/70">
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
                   Home
@@ -129,7 +131,7 @@ export default function Footer() {
           {/* Skills */}
           <div>
             <h3 className="font-medium mb-4">Skills</h3>
-            <ul className="space-y-3 text-sm text-foreground-muted">
+            <ul className="space-y-3 text-sm text-neutral/70">
               <li>React & Next.js</li>
               <li>Laravel & Django</li>
               <li>PostgreSQL & AI/ML</li>
@@ -141,7 +143,7 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border-light">
-          <p className="text-sm text-foreground-muted mb-4 md:mb-0">
+          <p className="text-sm text-neutral/70 mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Xerxes Portfolio. Built with
             Next.js & Tailwind CSS.
           </p>

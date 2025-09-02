@@ -58,7 +58,7 @@ export default function RotatingText() {
   }, []);
 
   return (
-    <span className="text-blue-600 dark:text-blue-400">
+    <span className="text-primary dark:text-primary">
       {displayedText}
       <span
         className={`${

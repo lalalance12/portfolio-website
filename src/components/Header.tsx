@@ -49,26 +49,29 @@ export default function Header() {
     const isCurrentSection = activeSection === sectionId;
 
     if (isCurrentSection) {
-      return `${baseClass} font-medium text-white bg-blue-600 dark:bg-blue-500 shadow-lg transform scale-105`;
+      return `${baseClass} font-medium text-secondary bg-primary dark:bg-primary shadow-lg transform scale-105`;
     }
 
-    return `${baseClass} text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:scale-105`;
+    return `${baseClass} text-neutral dark:text-neutral hover:bg-neutral/10 dark:hover:bg-neutral/10 hover:scale-105`;
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full px-8 py-6 flex justify-between items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+    <header className="sticky top-0 z-50 w-full px-8 py-6 flex justify-between items-center bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-sm">
       <div className="text-xl font-medium flex items-center">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex items-center">
-          </div>
-          <span className="text-slate-800 dark:text-slate-200 font-bold">
+        <Link
+          href="/"
+          onClick={() => scrollToSection("home")}
+          className="flex items-center gap-2"
+        >
+          <div className="flex items-center"></div>
+          <span className="text-neutral dark:text-neutral font-bold">
             Xerxes Portfolio
           </span>
         </Link>
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-        <div className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-500 absolute left-[-10px]"></div>
-        <nav className="flex items-center rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-2 py-2 shadow-md border border-slate-200/50 dark:border-slate-700/50 transition-all duration-300">
+        <div className="w-2 h-2 rounded-full bg-primary dark:bg-primary absolute left-[-10px]"></div>
+        <nav className="flex items-center rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-300">
           <button
             onClick={() => scrollToSection("home")}
             className={getNavItemClass("home")}

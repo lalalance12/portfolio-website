@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #64b5f6; /* Light blue */
-  --primary-dark: #1e88e5; /* Darker blue for depth */
-  --secondary: #ffffff; /* White */
-  --neutral: #eaeaea; /* Light gray for background - updated to match reference */
-  --background: var(--neutral);
-  --foreground: #111111; /* Almost black for text */
-  --foreground-muted: #666666; /* Muted text for secondary content */
-  --border: #d1d5db; /* Border color using neutral tone */
-  --border-light: #e5e7eb; /* Lighter border for subtle dividers */
-  --accent: #26a69a; /* Teal accent that complements the blue primary */
-  --gradient-primary: linear-gradient(135deg, #64b5f6 0%, #1e88e5 100%);
+  --primary: #f97316; /* Vibrant orange */
+  --primary-dark: #ea580c; /* Deeper orange for depth */
+  --secondary: #FAFAFA; /* Off-white */
+  --neutral: #1A1A1A; /* Dark gray for neutral elements */
+  --background: #FAFAFA; /* Off-white background */
+  --foreground: #1A1A1A; /* Dark gray text for better contrast on off-white */
+  --foreground-muted: #666666; /* Muted text */
+  --border: #d1d5db; /* Adjust if needed */
+  --border-light: #e5e7eb;
+  --accent: #0d9488;
+  --gradient-primary: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
 }
 
 @theme inline {
@@ -25,23 +25,22 @@
   --color-border: var(--border);
   --color-border-light: var(--border-light);
   --color-accent: var(--accent);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-montserrat);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary: #90caf9; /* Lighter blue for dark mode */
-    --primary-dark: #42a5f5;
-    --secondary: #f5f5f5;
-    --neutral: #1a1a1a;
-    --background: var(--neutral);
-    --foreground: #f5f5f5;
-    --foreground-muted: #a1a1aa; /* Muted text for dark mode */
-    --border: #374151; /* Darker border for dark mode */
-    --border-light: #2d3748; /* Lighter border for dark mode */
-    --accent: #4dd0e1; /* Lighter teal for dark mode */
-    --gradient-primary: linear-gradient(135deg, #90caf9 0%, #42a5f5 100%);
+    --primary: #fdba74; /* Lighter orange for dark mode */
+    --primary-dark: #f97316;
+    --secondary: #FAFAFA; /* Off-white */
+    --neutral: #1A1A1A; /* Dark gray */
+    --background: #FAFAFA; /* Force off-white background even in dark mode */
+    --foreground: #1A1A1A; /* Dark gray text */
+    --foreground-muted: #a1a1aa;
+    --border: #374151;
+    --border-light: #2d3748;
+    --accent: #22d3ee;
+    --gradient-primary: linear-gradient(135deg, #fdba74 0%, #f97316 100%);
   }
 }
 
@@ -125,8 +124,8 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--foreground); /* Ensures all default text uses the new dark gray */
+  font-family: var(--font-sans), sans-serif;
   font-feature-settings: "ss01", "ss02", "cv01", "cv03";
   font-variation-settings: "wght" 400;
   -webkit-font-smoothing: antialiased;
