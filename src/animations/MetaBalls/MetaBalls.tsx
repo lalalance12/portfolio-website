@@ -227,7 +227,7 @@ const MetaBalls: React.FC<MetaBallsProps> = ({
       program.uniforms.iResolution.value.set(
         gl.canvas.width,
         gl.canvas.height,
-        0,
+        0
       );
     }
     window.addEventListener("resize", resize);

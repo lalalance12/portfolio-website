@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useEffect, useState, ReactNode } from "react";
 
 interface FadeContentProps {
@@ -37,7 +39,7 @@ const FadeContent: React.FC<FadeContentProps> = ({
           }, delay);
         }
       },
-      { threshold },
+      { threshold }
     );
 
     observer.observe(element);
