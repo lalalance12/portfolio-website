@@ -1,4 +1,120 @@
+import LogoLoop from "@/animations/LogoLoop/LogoLoop";
+import { Icon } from "@iconify/react";
+
 export default function SkillsSection() {
+  const techLogos = [
+    {
+      node: <Icon icon="simple-icons:react" color="#61DAFB" />,
+      title: "React",
+      href: "https://react.dev",
+    },
+    {
+      node: <Icon icon="simple-icons:nextdotjs" color="#000000" />,
+      title: "Next.js",
+      href: "https://nextjs.org",
+    },
+    {
+      node: <Icon icon="simple-icons:typescript" color="#007ACC" />,
+      title: "TypeScript",
+      href: "https://www.typescriptlang.org",
+    },
+    {
+      node: <Icon icon="simple-icons:tailwindcss" color="#06B6D4" />,
+      title: "Tailwind CSS",
+      href: "https://tailwindcss.com",
+    },
+    {
+      node: <Icon icon="simple-icons:laravel" color="#FF2D20" />,
+      title: "Laravel",
+      href: "https://laravel.com",
+    },
+    {
+      node: <Icon icon="simple-icons:php" color="#777BB4" />,
+      title: "PHP",
+      href: "https://www.php.net",
+    },
+    {
+      node: <Icon icon="simple-icons:django" color="#092E20" />,
+      title: "Django",
+      href: "https://www.djangoproject.com",
+    },
+    {
+      node: <Icon icon="simple-icons:python" color="#3776AB" />,
+      title: "Python",
+      href: "https://www.python.org",
+    },
+    {
+      node: <Icon icon="simple-icons:nodedotjs" color="#339933" />,
+      title: "Node.js",
+      href: "https://nodejs.org",
+    },
+    {
+      node: <Icon icon="simple-icons:express" color="#000000" />,
+      title: "Express",
+      href: "https://expressjs.com",
+    },
+    {
+      node: <Icon icon="simple-icons:postgresql" color="#336791" />,
+      title: "PostgreSQL",
+      href: "https://www.postgresql.org",
+    },
+    {
+      node: <Icon icon="simple-icons:git" color="#F05032" />,
+      title: "Git",
+      href: "https://git-scm.com",
+    },
+    {
+      node: <Icon icon="simple-icons:supabase" color="#3ECF8E" />,
+      title: "Supabase",
+      href: "https://supabase.com",
+    },
+    {
+      node: <Icon icon="simple-icons:amazonaws" color="#FF9900" />,
+      title: "AWS",
+      href: "https://aws.amazon.com",
+    },
+    {
+      node: <Icon icon="simple-icons:css3" color="#264DE4" />,
+      title: "CSS",
+      href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    },
+    {
+      node: <Icon icon="simple-icons:html5" color="#E34F26" />,
+      title: "HTML",
+      href: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    },
+    {
+      node: <Icon icon="simple-icons:javascript" color="#F7DF1E" />,
+      title: "JavaScript",
+      href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    },
+    {
+      node: <Icon icon="simple-icons:c" color="#A8B9CC" />,
+      title: "C",
+      href: "https://en.cppreference.com/w/c",
+    },
+    {
+      node: <Icon icon="simple-icons:cplusplus" color="#00599C" />,
+      title: "C++",
+      href: "https://en.cppreference.com/w/cpp",
+    },
+    {
+      node: <Icon icon="simple-icons:mysql" color="#4479A1" />,
+      title: "MySQL",
+      href: "https://www.mysql.com",
+    },
+    {
+      node: <Icon icon="simple-icons:mongodb" color="#47A248" />,
+      title: "MongoDB",
+      href: "https://www.mongodb.com",
+    },
+    {
+      node: <Icon icon="simple-icons:postman" color="#FF6C37" />,
+      title: "Postman",
+      href: "https://www.postman.com",
+    },
+  ];
+
   return (
     <section
       id="skills"
@@ -100,6 +216,40 @@ export default function SkillsSection() {
             </div>
           </div>
         </div>
+      </div>
+      <div
+        className="mt-12"
+        style={{ height: "200px", position: "relative", overflow: "hidden" }}
+      >
+        <LogoLoop
+          logos={techLogos}
+          speed={80}
+          direction="right"
+          logoHeight={64}
+          gap={40}
+          pauseOnHover
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#ffffff"
+          ariaLabel="Technology partners"
+        />
+      </div>
+      <div
+        className="mt-0"
+        style={{ height: "200px", position: "relative", overflow: "hidden" }}
+      >
+        <LogoLoop
+          logos={techLogos}
+          speed={80}
+          direction="left"
+          logoHeight={64}
+          gap={40}
+          pauseOnHover
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#ffffff"
+          ariaLabel="Technology partners"
+        />
       </div>
     </section>
   );
