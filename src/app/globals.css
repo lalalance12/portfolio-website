@@ -158,3 +158,38 @@ button, .button {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
+
+/* Enhanced Footer Gradient Effects */
+.footer-gradient-bg {
+  background: #FAFAFA; /* Secondary white background */
+}
+
+.footer-gradient-overlay-main {
+  background: linear-gradient(135deg,
+    rgba(249, 115, 22, 0.05) 0%,
+    rgba(234, 88, 12, 0.1) 50%,
+    rgba(249, 115, 22, 0.2) 100%
+  );
+}
+
+.footer-gradient-overlay {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(249, 115, 22, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+.footer-social-gradient {
+  background: linear-gradient(135deg,
+    rgba(249, 115, 22, 0.2) 0%,
+    rgba(234, 88, 12, 0.3) 100%
+  );
+}
+
+.footer-social-gradient-hover {
+  background: linear-gradient(135deg,
+    rgb(249, 115, 22) 0%,
+    rgb(234, 88, 12) 100%
+  );
+}

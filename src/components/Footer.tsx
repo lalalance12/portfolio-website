@@ -2,18 +2,22 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full py-16 px-8 bg-white text-neutral border-t border-border">
-      <div className="max-w-7xl mx-auto">
+    <footer className="w-full py-16 px-8 bg-secondary text-neutral border-t border-border relative overflow-hidden">
+      {/* Main diagonal gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/20"></div>
+      {/* Gradient overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-50"></div>
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-3xl font-bold text-primary">
+              <span className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
                 Xerxes Portfolio
               </span>
             </div>
-            <p className="text-neutral/70 max-w-md mb-6">
+            <p className="text-neutral/80 max-w-md mb-6">
               Passionate software engineer creating scalable, efficient, and
               user-centric web applications. Based in the Philippines,
               delivering quality solutions worldwide.
@@ -23,7 +27,8 @@ export default function Footer() {
             <div className="flex gap-4">
               <a
                 href="mailto:lompon.xerxeslancelaurenz@gmail.com"
-                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                title="Send email to Xerxes Lompon"
+                className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-neutral group-hover:text-secondary"
@@ -43,7 +48,8 @@ export default function Footer() {
                 href="https://linkedin.com/in/xerxes-lompon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                title="Visit Xerxes Lompon's LinkedIn profile"
+                className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-neutral group-hover:text-secondary"
@@ -57,7 +63,8 @@ export default function Footer() {
                 href="https://github.com/lalalance12"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                title="Visit Xerxes Lompon's GitHub profile"
+                className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-neutral group-hover:text-secondary"
@@ -71,7 +78,8 @@ export default function Footer() {
                 href="https://discord.com/users/.grindh1412"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-neutral/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors group"
+                title="Connect with Xerxes Lompon on Discord"
+                className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-neutral group-hover:text-secondary"
@@ -86,8 +94,10 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="font-medium mb-4">Navigation</h3>
-            <ul className="space-y-3 text-sm text-neutral/70">
+            <h3 className="font-medium mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+              Navigation
+            </h3>
+            <ul className="space-y-3 text-sm text-neutral/80">
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
                   Home
@@ -130,8 +140,10 @@ export default function Footer() {
 
           {/* Skills */}
           <div>
-            <h3 className="font-medium mb-4">Skills</h3>
-            <ul className="space-y-3 text-sm text-neutral/70">
+            <h3 className="font-medium mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+              Skills
+            </h3>
+            <ul className="space-y-3 text-sm text-neutral/80">
               <li>React & Next.js</li>
               <li>Laravel & Django</li>
               <li>PostgreSQL & AI/ML</li>
@@ -142,8 +154,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border-light">
-          <p className="text-sm text-neutral/70 mb-4 md:mb-0">
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-primary/30">
+          <p className="text-sm text-neutral/80 mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Xerxes Portfolio. Built with
             Next.js & Tailwind CSS.
           </p>
