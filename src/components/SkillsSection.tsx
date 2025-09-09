@@ -136,91 +136,177 @@ export default function SkillsSection() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Skills & Technologies
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+            Skills & Technologies
+          </h2>
+          <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+            A comprehensive toolkit of modern technologies and frameworks for
+            building exceptional digital experiences
+          </p>
+        </div>
         <div className="grid md:grid-cols-3 gap-8">
           {/* Frontend */}
-          <div className="text-center bg-white/80 dark:bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-border shadow-lg">
-            <div className="w-16 h-16 bg-primary dark:bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-medium mb-4">Frontend</h3>
-            <div className="space-y-2">
-              <p className="text-slate-600 dark:text-slate-300">
-                React & Next.js
-              </p>
-              <p className="text-slate-600 dark:text-slate-300">TypeScript</p>
-              <p className="text-slate-600 dark:text-slate-300">Tailwind CSS</p>
-              <p className="text-slate-600 dark:text-slate-300">
-                Responsive Design
-              </p>
+          <div className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            <div className="relative z-10">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl group-hover:shadow-primary/25 transition-all duration-300 relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  {/* Modern Browser/Monitor Icon */}
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <rect
+                      x="2"
+                      y="3"
+                      width="20"
+                      height="14"
+                      rx="2"
+                      strokeWidth="2"
+                    />
+                    <line x1="8" y1="21" x2="16" y2="21" strokeWidth="2" />
+                    <line x1="12" y1="17" x2="12" y2="21" strokeWidth="2" />
+                  </svg>
+                </div>
+              </div>
+
+              <h3 className="text-2xl font-semibold mb-6 text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors duration-300">
+                Frontend
+              </h3>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">React & Next.js</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">TypeScript</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">Tailwind CSS</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">Responsive Design</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Backend */}
-          <div className="text-center bg-white/80 dark:bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-border shadow-lg">
-            <div className="w-16 h-16 bg-primary dark:bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M4.5 9L12 5l7.5 4v6l-7.5 4L4.5 15V9z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-medium mb-4">Backend</h3>
-            <div className="space-y-2">
-              <p className="text-slate-600 dark:text-slate-300">
-                Laravel & PHP
-              </p>
-              <p className="text-slate-600 dark:text-slate-300">
-                Django & Python
-              </p>
-              <p className="text-slate-600 dark:text-slate-300">
-                Node.js & Express
-              </p>
-              <p className="text-slate-600 dark:text-slate-300">RESTful APIs</p>
+          <div className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            <div className="relative z-10">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl group-hover:shadow-primary/25 transition-all duration-300 relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  {/* Modern Server/Gear Icon */}
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="3" strokeWidth="2" />
+                    <path d="M12 1v6m0 6v6" strokeWidth="2" />
+                    <path
+                      d="m16.24 7.76-4.24 4.24m4.24 4.24-4.24-4.24"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="m7.76 7.76 4.24 4.24m-4.24 4.24 4.24-4.24"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <h3 className="text-2xl font-semibold mb-6 text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors duration-300">
+                Backend
+              </h3>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">Laravel & PHP</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">Django & Python</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">Node.js & Express</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">RESTful APIs</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Database & Cloud */}
-          <div className="text-center bg-white/80 dark:bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-border shadow-lg">
-            <div className="w-16 h-16 bg-primary dark:bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 1L3 5v6c0 6.55 4.84 12.86 9 14 4.16-1.14 9-7.45 9-14V5l-9-4z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-medium mb-4">Database & Cloud</h3>
-            <div className="space-y-2">
-              <p className="text-slate-600 dark:text-slate-300">
-                PostgreSQL & pgvector
-              </p>
-              <p className="text-slate-600 dark:text-slate-300">
-                AWS & Supabase
-              </p>
-              <p className="text-slate-600 dark:text-slate-300">
-                AI/ML (Llama 3, Ollama)
-              </p>
-              <p className="text-slate-600 dark:text-slate-300">Git & Agile</p>
+          <div className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            <div className="relative z-10">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl group-hover:shadow-primary/25 transition-all duration-300 relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  {/* Modern Cloud Database Icon */}
+                  <svg
+                    className="w-10 h-10 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"
+                      strokeWidth="2"
+                    />
+                    <path d="M12 12v3" strokeWidth="2" />
+                    <path d="M9 15h6" strokeWidth="2" />
+                    <path d="M12 6v3" strokeWidth="2" />
+                  </svg>
+                </div>
+              </div>
+
+              <h3 className="text-2xl font-semibold mb-6 text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors duration-300">
+                Database & Cloud
+              </h3>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">PostgreSQL & pgvector</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">AWS & Supabase</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">AI/ML (Llama 3, Ollama)</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-sm">Git & Agile</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div
-        className="mt-12"
-        style={{ height: "200px", position: "relative", overflow: "hidden" }}
-      >
+      <div className="mt-12 h-[120px] relative overflow-hidden">
         <LogoLoop
           logos={techLogos}
           speed={80}
@@ -234,10 +320,7 @@ export default function SkillsSection() {
           ariaLabel="Technology partners"
         />
       </div>
-      <div
-        className="mt-0"
-        style={{ height: "200px", position: "relative", overflow: "hidden" }}
-      >
+      <div className="mt-0 h-[100px] relative overflow-hidden">
         <LogoLoop
           logos={techLogos}
           speed={80}
