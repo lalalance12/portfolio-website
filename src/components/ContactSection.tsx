@@ -25,7 +25,6 @@ export default function ContactSection() {
     <section
       id="contact"
       className="w-full px-8 py-24 bg-background relative overflow-hidden"
-      style={{ backgroundColor: "var(--background)" }}
     >
       {/* Enhanced decorative elements with proper color variables */}
       <div className="absolute inset-0 opacity-3">
