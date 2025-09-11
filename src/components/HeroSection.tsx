@@ -59,13 +59,35 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="#projects"
-              className="inline-block px-8 py-3 bg-primary hover:bg-primary-dark dark:bg-primary dark:hover:bg-primary-dark text-secondary transition-colors font-medium rounded-lg text-center"
+              className="inline-block px-8 py-3 bg-primary hover:bg-primary-dark dark:bg-primary dark:hover:bg-primary-dark text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 hover:shadow-lg"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("projects");
+                if (element) {
+                  element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "nearest",
+                  });
+                }
+              }}
             >
               View My Work
             </a>
             <a
               href="#contact"
-              className="inline-block px-8 py-3 border border-border !text-neutral hover:bg-neutral/10 transition-colors font-medium rounded-lg text-center"
+              className="inline-block px-8 py-3 border border-border !text-neutral hover:bg-neutral/10 transition-all duration-300 font-medium rounded-lg text-center hover:scale-105"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("contact");
+                if (element) {
+                  element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest",
+                  });
+                }
+              }}
             >
               Get In Touch
             </a>

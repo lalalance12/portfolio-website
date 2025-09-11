@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import SocialDropdown from "./SocialDropdown";
 
@@ -27,21 +27,33 @@ export default function Header() {
 
   const navRef = useRef<HTMLElement>(null);
 
-  const refs: Record<Section, React.RefObject<HTMLButtonElement | null>> = {
-    home: useRef<HTMLButtonElement>(null),
-    about: useRef<HTMLButtonElement>(null),
-    skills: useRef<HTMLButtonElement>(null),
-    projects: useRef<HTMLButtonElement>(null),
-    contact: useRef<HTMLButtonElement>(null),
-  };
+  const homeRef = useRef<HTMLButtonElement>(null);
+  const aboutRef = useRef<HTMLButtonElement>(null);
+  const skillsRef = useRef<HTMLButtonElement>(null);
+  const projectsRef = useRef<HTMLButtonElement>(null);
+  const contactRef = useRef<HTMLButtonElement>(null);
+
+  const refs = useMemo(
+    () => ({
+      home: homeRef,
+      about: aboutRef,
+      skills: skillsRef,
+      projects: projectsRef,
+      contact: contactRef,
+    }),
+    []
+  );
 
   const scrollToSection = (sectionId: Section) => {
     setTargetSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
+      // Use center block for better visual flow, except for contact section
+      const block = sectionId === "contact" ? "start" : "center";
       element.scrollIntoView({
         behavior: "smooth",
-        block: "start",
+        block: block,
+        inline: "nearest",
       });
     }
   };
@@ -98,7 +110,7 @@ export default function Header() {
         transform: "none",
       });
     } else {
-      const button = refs[targetSection]?.current;
+      const button = refs[targetSection]?.current || null;
       if (button) {
         setIndicatorProps({
           left: button.offsetLeft,
@@ -110,7 +122,7 @@ export default function Header() {
         });
       }
     }
-  }, [targetSection]);
+  }, [targetSection, refs]);
 
   const getNavItemClass = (sectionId: Section) => {
     const baseClass =
@@ -150,35 +162,35 @@ export default function Header() {
             onAnimationComplete={() => setActiveSection(targetSection)}
           />
           <button
-            ref={refs.home}
+            ref={homeRef}
             onClick={() => scrollToSection("home")}
             className={getNavItemClass("home")}
           >
             <span className="relative z-10">Home</span>
           </button>
           <button
-            ref={refs.about}
+            ref={aboutRef}
             onClick={() => scrollToSection("about")}
             className={getNavItemClass("about")}
           >
             <span className="relative z-10">About</span>
           </button>
           <button
-            ref={refs.skills}
+            ref={skillsRef}
             onClick={() => scrollToSection("skills")}
             className={getNavItemClass("skills")}
           >
             <span className="relative z-10">Skills</span>
           </button>
           <button
-            ref={refs.projects}
+            ref={projectsRef}
             onClick={() => scrollToSection("projects")}
             className={getNavItemClass("projects")}
           >
             <span className="relative z-10">Projects</span>
           </button>
           <button
-            ref={refs.contact}
+            ref={contactRef}
             onClick={() => scrollToSection("contact")}
             className={getNavItemClass("contact")}
           >

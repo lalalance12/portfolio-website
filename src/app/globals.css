@@ -126,6 +126,21 @@
   animation-delay: 1s;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* Account for header height + spacing */
+  scroll-margin-top: 20px; /* Additional margin for better spacing */
+}
+
+/* Custom smooth scroll timing for better feel */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+    /* Custom easing for smoother feel */
+    --scroll-behavior: cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground); /* Ensures all default text uses the new dark gray */
