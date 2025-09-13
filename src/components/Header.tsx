@@ -46,13 +46,13 @@ export default function Header() {
 
   const scrollToSection = (sectionId: Section) => {
     setTargetSection(sectionId);
+    setActiveSection(sectionId); // Set active immediately for instant visual feedback
     const element = document.getElementById(sectionId);
     if (element) {
-      // Use center block for better visual flow, except for contact section
-      const block = sectionId === "contact" ? "start" : "center";
+      // Use start for all sections to prevent overlap and align to top
       element.scrollIntoView({
         behavior: "smooth",
-        block: block,
+        block: "start",
         inline: "nearest",
       });
     }
@@ -109,6 +109,7 @@ export default function Header() {
         borderRadius: "50%",
         transform: "none",
       });
+      setActiveSection(null);
     } else {
       const button = refs[targetSection]?.current || null;
       if (button) {
@@ -121,12 +122,14 @@ export default function Header() {
           transform: "none",
         });
       }
+      // Set activeSection immediately when targetSection changes
+      setActiveSection(targetSection);
     }
   }, [targetSection, refs]);
 
   const getNavItemClass = (sectionId: Section) => {
     const baseClass =
-      "px-4 py-1 rounded-full text-sm transition-all duration-300 ease-out relative overflow-hidden";
+      "px-4 py-1 rounded-full text-sm transition-all duration-20 ease-linear relative overflow-hidden cursor-pointer";
     const isCurrentSection = activeSection === sectionId;
 
     if (isCurrentSection) {
@@ -153,13 +156,12 @@ export default function Header() {
       <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
         <nav
           ref={navRef}
-          className="relative flex items-center gap-4 rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-300"
+          className="relative flex items-center gap-4 rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-20"
         >
           <motion.div
-            className="absolute z-0 bg-primary"
+            className="absolute -z-10 bg-primary pointer-events-none"
             animate={indicatorProps}
-            transition={{ type: "spring", stiffness: 150, damping: 12 }}
-            onAnimationComplete={() => setActiveSection(targetSection)}
+            transition={{ type: "spring", stiffness: 600, damping: 30 }}
           />
           <button
             ref={homeRef}
