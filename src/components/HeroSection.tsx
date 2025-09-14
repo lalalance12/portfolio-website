@@ -17,19 +17,19 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full px-8 py-24 md:py-32 overflow-hidden"
+      className="relative w-full px-6 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 overflow-hidden"
     >
       {/* Background parallax layer */}
       <motion.div
         className="absolute inset-0 opacity-5"
         style={{ y: backgroundY }}
       >
-        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-32 left-20 w-80 h-80 bg-accent/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 right-4 sm:top-20 sm:right-10 md:right-20 w-48 h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-primary/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-16 left-4 sm:bottom-24 sm:left-10 md:bottom-32 md:left-20 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-accent/20 rounded-full blur-3xl"></div>
       </motion.div>
 
       <FadeContent blur={true} duration={1200} delay={200}>
-        <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24 items-center relative z-10 max-w-7xl mx-auto">
           {/* Picture Space with Parallax */}
           <AnimatedContent
             distance={100}
@@ -39,10 +39,10 @@ export default function HeroSection() {
             scale={0.9}
           >
             <motion.div
-              className="flex justify-center lg:justify-start order-2 lg:order-1"
+              className="flex justify-center lg:justify-start order-1 lg:order-2"
               style={{ y: imageY }}
             >
-              <div className="relative w-60 h-60 lg:w-80 lg:h-80 group">
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 group">
                 {/* Animated background glow */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-xl scale-110"
@@ -89,7 +89,7 @@ export default function HeroSection() {
 
           {/* Text Content with Enhanced Animations */}
           <motion.div
-            className="order-1 lg:order-2 space-y-6"
+            className="order-2 lg:order-1 space-y-4 sm:space-y-6 md:space-y-8 flex flex-col items-center lg:items-start"
             style={{ y: textY }}
           >
             <AnimatedContent
@@ -99,8 +99,8 @@ export default function HeroSection() {
               duration={1}
               delay={0.3}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-                <div className="mb-4 text-neutral dark:text-neutral">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">
+                <div className="mb-4 text-neutral dark:text-neutral text-center lg:text-left">
                   Hi! I am{" "}
                   <DecryptedText
                     text="Xerxes"
@@ -114,11 +114,11 @@ export default function HeroSection() {
                   />
                   , a
                 </div>
-                <div className="w-[10em] flex items-start relative">
+                <div className="w-[10em] flex items-center justify-center lg:justify-start relative mx-auto lg:mx-0">
                   <RotatingText />
                   {/* Floating accent elements */}
                   <motion.div
-                    className="absolute -top-4 -right-4 w-3 h-3 bg-accent rounded-full"
+                    className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full"
                     animate={{
                       scale: [1, 1.5, 1],
                       opacity: [0.7, 1, 0.7],
@@ -130,7 +130,7 @@ export default function HeroSection() {
                     }}
                   />
                   <motion.div
-                    className="absolute -bottom-2 -left-6 w-2 h-2 bg-primary rounded-full"
+                    className="absolute -bottom-1 sm:-bottom-2 -left-3 sm:-left-6 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full"
                     animate={{
                       scale: [1, 1.3, 1],
                       opacity: [0.5, 0.8, 0.5],
@@ -147,7 +147,7 @@ export default function HeroSection() {
             </AnimatedContent>
 
             <FadeContent blur={false} duration={800} delay={600}>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-lg leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 sm:mb-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
                 I specialize in building scalable, efficient, and user-centric
                 systems. With hands-on experience across the full stack,
                 I&apos;ve delivered real-world projects using technologies like
@@ -161,10 +161,11 @@ export default function HeroSection() {
               duration={0.8}
               delay={0.8}
             >
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-6 w-full sm:w-auto px-4 sm:px-0 text-secondary">
                 <motion.a
                   href="#projects"
-                  className="inline-block px-8 py-3 bg-primary hover:bg-primary-dark dark:bg-primary dark:hover:bg-primary-dark text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 hover:shadow-lg"
+                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 bg-primary hover:bg-primary-dark text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 dark:focus:ring-primary/30 focus:ring-offset-2"
+                  aria-label="View my projects and work"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("projects");
@@ -183,7 +184,8 @@ export default function HeroSection() {
                 </motion.a>
                 <motion.a
                   href="#contact"
-                  className="inline-block px-8 py-3 border border-border !text-neutral hover:bg-neutral/10 transition-all duration-300 font-medium rounded-lg text-center hover:scale-105"
+                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 border-2  bg-primary dark:border-primary text-primary dark:text-primary hover:bg-primary hover:text-secondary dark:hover:text-neutral transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 dark:focus:ring-primary/30 focus:ring-offset-2"
+                  aria-label="Get in touch with me"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("contact");
