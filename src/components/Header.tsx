@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect, useRef, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SocialDropdown from "./SocialDropdown";
 
 type Section = "home" | "about" | "skills" | "projects" | "contact";
@@ -9,6 +9,7 @@ type Section = "home" | "about" | "skills" | "projects" | "contact";
 export default function Header() {
   const [activeSection, setActiveSection] = useState<Section | null>(null);
   const [targetSection, setTargetSection] = useState<Section | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [indicatorProps, setIndicatorProps] = useState<{
     left: number;
     width: number;
@@ -47,6 +48,7 @@ export default function Header() {
   const scrollToSection = (sectionId: Section) => {
     setTargetSection(sectionId);
     setActiveSection(sectionId); // Set active immediately for instant visual feedback
+    setIsMobileMenuOpen(false); // Close mobile menu when navigating
     const element = document.getElementById(sectionId);
     if (element) {
       // Use start for all sections to prevent overlap and align to top
@@ -140,67 +142,144 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full px-8 py-6 flex justify-between items-center bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-sm">
-      <div className="text-xl font-medium flex items-center">
-        <Link
-          href="/"
-          onClick={() => scrollToSection("home")}
-          className="flex items-center gap-2"
-        >
-          <div className="flex items-center"></div>
-          <span className="text-neutral dark:text-neutral font-bold">
-            Xerxes Portfolio
-          </span>
-        </Link>
-      </div>
-      <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-        <nav
-          ref={navRef}
-          className="relative flex items-center gap-4 rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-20"
-        >
-          <motion.div
-            className="absolute -z-10 bg-primary pointer-events-none"
-            animate={indicatorProps}
-            transition={{ type: "spring", stiffness: 600, damping: 30 }}
-          />
-          <button
-            ref={homeRef}
+    <>
+      <header className="sticky top-0 z-50 w-full px-4 md:px-8 py-4 md:py-6 flex justify-between items-center bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-sm">
+        <div className="text-lg md:text-xl font-medium flex items-center">
+          <Link
+            href="/"
             onClick={() => scrollToSection("home")}
-            className={getNavItemClass("home")}
+            className="flex items-center gap-2"
           >
-            <span className="relative z-10">Home</span>
-          </button>
-          <button
-            ref={aboutRef}
-            onClick={() => scrollToSection("about")}
-            className={getNavItemClass("about")}
+            <div className="flex items-center"></div>
+            <span className="text-neutral dark:text-neutral font-bold">
+              Xerxes Portfolio
+            </span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center">
+          <nav
+            ref={navRef}
+            className="relative flex items-center gap-4 rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-20"
           >
-            <span className="relative z-10">About</span>
-          </button>
-          <button
-            ref={skillsRef}
-            onClick={() => scrollToSection("skills")}
-            className={getNavItemClass("skills")}
+            <motion.div
+              className="absolute -z-10 bg-primary pointer-events-none"
+              animate={indicatorProps}
+              transition={{ type: "spring", stiffness: 600, damping: 30 }}
+            />
+            <button
+              ref={homeRef}
+              onClick={() => scrollToSection("home")}
+              className={getNavItemClass("home")}
+            >
+              <span className="relative z-10">Home</span>
+            </button>
+            <button
+              ref={aboutRef}
+              onClick={() => scrollToSection("about")}
+              className={getNavItemClass("about")}
+            >
+              <span className="relative z-10">About</span>
+            </button>
+            <button
+              ref={skillsRef}
+              onClick={() => scrollToSection("skills")}
+              className={getNavItemClass("skills")}
+            >
+              <span className="relative z-10">Skills</span>
+            </button>
+            <button
+              ref={projectsRef}
+              onClick={() => scrollToSection("projects")}
+              className={getNavItemClass("projects")}
+            >
+              <span className="relative z-10">Projects</span>
+            </button>
+            <button
+              ref={contactRef}
+              onClick={() => scrollToSection("contact")}
+              className={getNavItemClass("contact")}
+            >
+              <span className="relative z-10">Contact</span>
+            </button>
+          </nav>
+        </div>
+
+        {/* Mobile Hamburger Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 p-1"
+          aria-label="Toggle mobile menu"
+        >
+          <motion.span
+            className="w-6 h-0.5 bg-neutral dark:bg-neutral block"
+            animate={{
+              rotate: isMobileMenuOpen ? 45 : 0,
+              y: isMobileMenuOpen ? 6 : 0,
+            }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.span
+            className="w-6 h-0.5 bg-neutral dark:bg-neutral block"
+            animate={{
+              opacity: isMobileMenuOpen ? 0 : 1,
+            }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.span
+            className="w-6 h-0.5 bg-neutral dark:bg-neutral block"
+            animate={{
+              rotate: isMobileMenuOpen ? -45 : 0,
+              y: isMobileMenuOpen ? -6 : 0,
+            }}
+            transition={{ duration: 0.2 }}
+          />
+        </button>
+
+        {/* Desktop Social Dropdown */}
+        <div className="hidden md:block">
+          <SocialDropdown />
+        </div>
+      </header>
+
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-lg"
           >
-            <span className="relative z-10">Skills</span>
-          </button>
-          <button
-            ref={projectsRef}
-            onClick={() => scrollToSection("projects")}
-            className={getNavItemClass("projects")}
-          >
-            <span className="relative z-10">Projects</span>
-          </button>
-          <button
-            ref={contactRef}
-            onClick={() => scrollToSection("contact")}
-            className={getNavItemClass("contact")}
-          >
-            <span className="relative z-10">Contact</span>
-          </button>
-        </nav>
-      </div>
-      <SocialDropdown />
-    </header>
+            <nav className="flex flex-col py-4 px-6 space-y-4">
+              {[
+                { id: "home", label: "Home" },
+                { id: "about", label: "About" },
+                { id: "skills", label: "Skills" },
+                { id: "projects", label: "Projects" },
+                { id: "contact", label: "Contact" },
+              ].map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id as Section)}
+                  className={`text-left py-2 px-3 rounded-lg transition-all duration-200 ${
+                    activeSection === id
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-neutral dark:text-neutral hover:bg-neutral/10"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+              <div className="pt-4 border-t border-border">
+                <SocialDropdown />
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
