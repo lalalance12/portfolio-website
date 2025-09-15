@@ -546,7 +546,7 @@ export default function ProjectsSection() {
                     <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200">
                       <DecryptedText
                         text="Discover More Code"
-                        speed={80}
+                        speed={150}
                         maxIterations={15}
                         sequential={true}
                         animateOn="view"
@@ -556,10 +556,20 @@ export default function ProjectsSection() {
                     </h3>
 
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                      Explore my complete collection of projects, experiments,
-                      and contributions on GitHub. From machine learning models
-                      to full-stack applications, there&apos;s always something
-                      new to discover.
+
+                    <DecryptedText
+                        text="Explore my complete collection of projects, experiments,
+                        and contributions on GitHub. From machine learning models
+                        to full-stack applications, there&apos;s always something
+                        new to discover."
+                        speed={40}
+                        maxIterations={15}
+                        sequential={true}
+                        animateOn="view"
+                        className="text-slate-800 dark:text-slate-200"
+                        encryptedClassName="text-primary"
+                      />
+                      
                     </p>
                   </div>
 
@@ -637,17 +647,6 @@ export default function ProjectsSection() {
             </div>
           </div>
         </FadeContent>
-
-        <div className="text-center">
-          {/*
-          <Link
-            href="/projects"
-            className="inline-block px-8 py-3 bg-white/80 dark:bg-white/80 border border-border text-neutral dark:text-neutral hover:bg-neutral/10 dark:hover:bg-neutral/10 transition-colors font-medium rounded-lg shadow-lg backdrop-blur-sm"
-          >
-            View All Projects
-          </Link>
-          */}
-        </div>
       </div>
     </section>
   );
