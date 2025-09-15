@@ -131,7 +131,7 @@ export default function Header() {
 
   const getNavItemClass = (sectionId: Section) => {
     const baseClass =
-      "px-4 py-1 rounded-full text-sm transition-all duration-20 ease-linear relative overflow-hidden cursor-pointer";
+      "px-3 md:px-4 py-2 md:py-1 rounded-full text-sm md:text-sm transition-all duration-20 ease-linear relative overflow-hidden cursor-pointer min-h-[40px] md:min-h-auto";
     const isCurrentSection = activeSection === sectionId;
 
     if (isCurrentSection) {
@@ -143,7 +143,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full px-4 md:px-8 py-4 md:py-6 flex justify-between items-center bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-sm">
+      <header className="sticky top-0 z-50 w-full px-4 md:px-6 lg:px-8 py-4 md:py-6 flex justify-between items-center bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-sm">
         <div className="text-lg md:text-xl font-medium flex items-center">
           <Link
             href="/"
@@ -158,10 +158,10 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center">
+        <div className="hidden md:flex lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 items-center lg:top-1/2 lg:-translate-y-1/2">
           <nav
             ref={navRef}
-            className="relative flex items-center gap-4 rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-20"
+            className="relative flex items-center gap-2 md:gap-4 rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-20"
           >
             <motion.div
               className="absolute -z-10 bg-primary pointer-events-none"
