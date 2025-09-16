@@ -562,7 +562,7 @@ export default function ProjectsSection() {
                         and contributions on GitHub. From machine learning models
                         to full-stack applications, there&apos;s always something
                         new to discover."
-                        speed={40}
+                        speed={25}
                         maxIterations={15}
                         sequential={true}
                         animateOn="view"
@@ -636,9 +636,9 @@ export default function ProjectsSection() {
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">50+</div>
+                      <div className="text-2xl font-bold text-primary">88+</div>
                       <div className="text-sm text-slate-600 dark:text-slate-400">
-                        Commits
+                        Commits (2025)
                       </div>
                     </div>
                   </div>
