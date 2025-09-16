@@ -170,10 +170,11 @@ export default function HeroSection() {
                     e.preventDefault();
                     const element = document.getElementById("projects");
                     if (element) {
-                      element.scrollIntoView({
+                      // Scroll to exact position at the top of the section
+                      const elementTop = element.offsetTop;
+                      window.scrollTo({
+                        top: elementTop,
                         behavior: "smooth",
-                        block: "start",
-                        inline: "nearest",
                       });
                     }
                   }}
@@ -190,10 +191,11 @@ export default function HeroSection() {
                     e.preventDefault();
                     const element = document.getElementById("contact");
                     if (element) {
-                      element.scrollIntoView({
+                      // Scroll to exact position at the top of the section
+                      const elementTop = element.offsetTop;
+                      window.scrollTo({
+                        top: elementTop,
                         behavior: "smooth",
-                        block: "start",
-                        inline: "nearest",
                       });
                     }
                   }}

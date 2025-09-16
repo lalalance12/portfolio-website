@@ -10,6 +10,8 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState<Section | null>(null);
   const [targetSection, setTargetSection] = useState<Section | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [userNavigatedSection, setUserNavigatedSection] =
+    useState<Section | null>(null);
   const [indicatorProps, setIndicatorProps] = useState<{
     left: number;
     width: number;
@@ -46,23 +48,56 @@ export default function Header() {
   );
 
   const scrollToSection = (sectionId: Section) => {
+    setUserNavigatedSection(sectionId);
     setTargetSection(sectionId);
     setActiveSection(sectionId); // Set active immediately for instant visual feedback
     setIsMobileMenuOpen(false); // Close mobile menu when navigating
+
     const element = document.getElementById(sectionId);
     if (element) {
-      // Use start for all sections to prevent overlap and align to top
-      element.scrollIntoView({
+      // Calculate exact position to scroll to the very beginning of the section
+      const elementTop = element.offsetTop;
+
+      // Scroll to the exact top of the section with smooth behavior
+      window.scrollTo({
+        top: elementTop,
         behavior: "smooth",
-        block: "start",
-        inline: "nearest",
       });
+
+      // Clear user navigation state after scroll completes
+      setTimeout(() => {
+        setUserNavigatedSection(null);
+      }, 1500); // Longer timeout to ensure scroll is complete
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY < 50) {
+      // Don't override user navigation - keep the clicked button highlighted
+      if (userNavigatedSection !== null) {
+        // Only update if we've actually reached the target section
+        const element = document.getElementById(userNavigatedSection);
+        if (element) {
+          const scrollPosition = window.scrollY;
+          const elementTop = element.offsetTop;
+          const elementHeight = element.offsetHeight;
+
+          // Check if we're within the target section (at the very beginning)
+          // Use a small threshold to account for smooth scrolling precision
+          const threshold = 100; // pixels from the top of the section
+
+          if (
+            scrollPosition >= elementTop - threshold &&
+            scrollPosition < elementTop + elementHeight - threshold
+          ) {
+            setUserNavigatedSection(null); // Allow normal scroll detection now
+          }
+        }
+        return;
+      }
+
+      // Reset to home when at the very top
+      if (window.scrollY < 100) {
         if (targetSection !== null) setTargetSection(null);
         return;
       }
@@ -74,16 +109,30 @@ export default function Header() {
         "projects",
         "contact",
       ];
-      const scrollPosition = window.scrollY + 100;
+
+      // Use exact scroll position without offset for precise detection
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
 
       let newSection: Section | null = null;
+
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
-          const { offsetTop, offsetHeight } = element;
+          const elementTop = element.offsetTop;
+          const elementHeight = element.offsetHeight;
+
+          // Check if the current scroll position is within this section
+          // The section is considered active if:
+          // 1. The scroll position is at or past the section start
+          // 2. The scroll position is before the section end
+          // 3. Or if we're near the end of the page and this is the last section
           if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
+            scrollPosition >= elementTop - 50 && // Small threshold for precision
+            (scrollPosition < elementTop + elementHeight - 50 ||
+              (sectionId === "contact" &&
+                scrollPosition + windowHeight >=
+                  elementTop + elementHeight - 100))
           ) {
             newSection = sectionId;
             break;
@@ -98,7 +147,7 @@ export default function Header() {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [targetSection]);
+  }, [targetSection, userNavigatedSection]);
 
   useEffect(() => {
     if (targetSection === null) {
