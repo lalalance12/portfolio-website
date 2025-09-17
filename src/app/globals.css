@@ -212,3 +212,12 @@ button, .button {
     rgb(234, 88, 12) 100%
   );
 }
+
+/* Custom radial gradient for footer background */
+.footer-radial-gradient {
+  background: radial-gradient(circle at center,
+    rgba(249, 115, 22, 0.15) 0%,
+    rgba(249, 115, 22, 0.08) 40%,
+    transparent 70%
+  );
+}
