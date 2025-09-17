@@ -91,7 +91,7 @@ export default function ContactSection() {
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <FadeContent blur={true} duration={1000} delay={300}>
-          <motion.div className="mb-16" style={{ y: contentY }}>
+          <motion.div className="mb-2" style={{ y: contentY }}>
             <h2
               className="text-4xl md:text-5xl font-bold mb-6"
               style={{
@@ -380,7 +380,7 @@ export default function ContactSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
                 href="mailto:lompon.xerxeslancelaurenz@gmail.com"
-                className="inline-flex items-center px-8 py-3 font-medium rounded-full transition-all duration-300"
+                className="inline-flex justify-center items-center px-8 py-3 font-medium rounded-full transition-all duration-300"
                 style={{
                   background: "var(--gradient-primary)",
                   color: "var(--secondary)",
@@ -420,7 +420,7 @@ export default function ContactSection() {
                 href="https://linkedin.com/in/xerxes-lompon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-3 font-medium rounded-full border-2 transition-all duration-300"
+                className="inline-flex justify-center items-center px-8 py-3 font-medium rounded-full border-2 transition-all duration-300"
                 style={{
                   borderColor: "var(--primary)",
                   color: "var(--primary)",
