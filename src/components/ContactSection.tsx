@@ -32,7 +32,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="w-full px-8 py-24 bg-background relative overflow-hidden"
+      className="w-full px-8 py-14 bg-background relative overflow-hidden"
     >
       {/* Enhanced decorative elements with parallax */}
       <motion.div
@@ -93,7 +93,7 @@ export default function ContactSection() {
         <FadeContent blur={true} duration={1000} delay={300}>
           <motion.div className="mb-2" style={{ y: contentY }}>
             <h2
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="text-4xl md:text-5xl font-bold mb-2"
               style={{
                 background: "var(--gradient-primary)",
                 WebkitBackgroundClip: "text",
@@ -114,7 +114,7 @@ export default function ContactSection() {
         </FadeContent>
 
         <AnimatedContent distance={70} duration={0.8} delay={0.2}>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 -my-2">
             {/* Email Card */}
             <motion.div
               className="group relative"
