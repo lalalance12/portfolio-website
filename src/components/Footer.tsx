@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Footer() {
@@ -105,38 +107,106 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm text-secondary/80">
               <li>
-                <Link href="/" className="hover:text-primary transition-colors">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="hover:text-primary transition-colors cursor-pointer"
+                >
                   Home
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
-                  href="/about"
-                  className="hover:text-primary transition-colors"
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById("about");
+                    if (element) {
+                      const elementTop = element.offsetTop;
+                      const headerHeight = 100;
+                      const scrollPosition = elementTop - headerHeight;
+                      const finalPosition = Math.max(0, scrollPosition);
+                      window.scrollTo({
+                        top: finalPosition,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="hover:text-primary transition-colors cursor-pointer"
                 >
                   About
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
-                  href="/projects"
-                  className="hover:text-primary transition-colors"
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById("skills");
+                    if (element) {
+                      const elementTop = element.offsetTop;
+                      const headerHeight = 100;
+                      const scrollPosition = elementTop - headerHeight;
+                      const finalPosition = Math.max(0, scrollPosition);
+                      window.scrollTo({
+                        top: finalPosition,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="hover:text-primary transition-colors cursor-pointer"
+                >
+                  Skills
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById("projects");
+                    if (element) {
+                      const elementTop = element.offsetTop;
+                      const headerHeight = 100;
+                      const scrollPosition = elementTop - headerHeight;
+                      const finalPosition = Math.max(0, scrollPosition);
+                      window.scrollTo({
+                        top: finalPosition,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="hover:text-primary transition-colors cursor-pointer"
                 >
                   Projects
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-primary transition-colors"
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById("contact");
+                    if (element) {
+                      const elementTop = element.offsetTop;
+                      const headerHeight = 100;
+                      const scrollPosition = elementTop - headerHeight;
+                      const finalPosition = Math.max(0, scrollPosition);
+                      window.scrollTo({
+                        top: finalPosition,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="hover:text-primary transition-colors cursor-pointer"
                 >
                   Contact
-                </Link>
+                </button>
               </li>
               <li>
                 <Link
                   href="/resume"
                   className="hover:text-primary transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Resume
                 </Link>
