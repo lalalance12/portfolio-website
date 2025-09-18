@@ -191,10 +191,18 @@ export default function HeroSection() {
                     e.preventDefault();
                     const element = document.getElementById("contact");
                     if (element) {
-                      // Scroll to exact position at the top of the section
+                      // Calculate position accounting for sticky header
                       const elementTop = element.offsetTop;
+                      const header = document.querySelector("header");
+                      const headerHeight = header ? header.offsetHeight : 100;
+                      const scrollPosition = elementTop - headerHeight - 20;
+
+                      // Ensure we don't scroll above the top of the page
+                      const finalPosition = Math.max(0, scrollPosition);
+
+                      // Scroll to the section with smooth behavior
                       window.scrollTo({
-                        top: elementTop,
+                        top: finalPosition,
                         behavior: "smooth",
                       });
                     }
