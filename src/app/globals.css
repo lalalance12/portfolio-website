@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --primary: #f97316; /* Vibrant orange */
   --primary-dark: #ea580c; /* Deeper orange for depth */
