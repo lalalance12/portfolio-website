@@ -3,6 +3,7 @@
 import FadeContent from "../animations/FadeContent/FadeContent";
 import GlareHover from "../animations/GlareHover/GlareHover";
 import DecryptedText from "../textanimations/DecryptedText/DecryptedText";
+import CountUp from "../animations/CountUp/CountUp";
 import { useState } from "react";
 import { useModal } from "./ModalProvider";
 
@@ -556,11 +557,10 @@ export default function ProjectsSection() {
                     </h3>
 
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-
-                    <DecryptedText
+                      <DecryptedText
                         text="Explore my complete collection of projects, experiments,
                         and contributions on GitHub. From machine learning models
-                        to full-stack applications, there&apos;s always something
+                        to full-stack applications, there's always something
                         new to discover."
                         speed={25}
                         maxIterations={15}
@@ -569,7 +569,6 @@ export default function ProjectsSection() {
                         className="text-slate-800 dark:text-slate-200"
                         encryptedClassName="text-primary"
                       />
-                      
                     </p>
                   </div>
 
@@ -624,19 +623,50 @@ export default function ProjectsSection() {
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-600">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">17+</div>
+                      <div className="text-2xl font-bold text-primary">
+                        <CountUp
+                          from={0}
+                          to={17}
+                          delay={1}
+                          direction="up"
+                          startWhen={true}
+                          duration={2}
+                          className="count-up-text"
+                        />
+                      </div>
                       <div className="text-sm text-slate-600 dark:text-slate-400">
                         Repositories
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">11</div>
+                      <div className="text-2xl font-bold text-primary">
+                        <CountUp
+                          from={0}
+                          to={11}
+                          delay={1}
+                          direction="up"
+                          startWhen={true}
+                          duration={1.5}
+                          className="count-up-text"
+                        />
+                      </div>
                       <div className="text-sm text-slate-600 dark:text-slate-400">
                         Stars
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">88+</div>
+                      <div className="text-2xl font-bold text-primary">
+                        <CountUp
+                          from={0}
+                          to={88}
+                          delay={1}
+                          direction="up"
+                          startWhen={true}
+                          duration={2}
+                          suffix="+"
+                          className="count-up-text"
+                        />
+                      </div>
                       <div className="text-sm text-slate-600 dark:text-slate-400">
                         Commits (2025)
                       </div>
