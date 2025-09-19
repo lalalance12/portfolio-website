@@ -122,6 +122,51 @@ const useImageLoader = (
   }, dependencies);
 };
 
+// Tooltip component
+const LogoTooltip: React.FC<{
+  visible: boolean;
+  title: string;
+  position: { x: number; y: number };
+  logoRect: DOMRect | null;
+}> = ({ visible, title, position, logoRect }) => {
+  if (!visible || !title) return null;
+
+  // Determine if tooltip should be above or below based on position
+  const isAbove = logoRect ? position.y < logoRect.top : true;
+
+  return (
+    <div
+      className="fixed z-[9999] pointer-events-none"
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        transform: isAbove ? "translate(-50%, -100%)" : "translate(-50%, 0)",
+      }}
+    >
+      {/* Tooltip bubble */}
+      <div className="relative">
+        <div className="bg-slate-900 dark:bg-slate-700 text-white px-3 py-2 rounded-lg shadow-lg backdrop-blur-sm border border-slate-700 dark:border-slate-600 whitespace-nowrap text-sm font-medium">
+          {title}
+        </div>
+        {/* Arrow */}
+        {isAbove ? (
+          // Arrow pointing down (tooltip above logo)
+          <>
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-l-transparent border-r-transparent border-t-[6px] border-t-slate-900 dark:border-t-slate-700" />
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-l-transparent border-r-transparent border-t-[5px] border-t-slate-800 dark:border-t-slate-600" />
+          </>
+        ) : (
+          // Arrow pointing up (tooltip below logo)
+          <>
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-l-transparent border-r-transparent border-b-[6px] border-b-slate-900 dark:border-b-slate-700" />
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-l-transparent border-r-transparent border-b-[5px] border-b-slate-800 dark:border-b-slate-600" />
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const useAnimationLoop = (
   trackRef: React.RefObject<HTMLDivElement | null>,
   targetVelocity: number,
@@ -209,6 +254,21 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     );
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
+    // Tooltip state
+    const [tooltipState, setTooltipState] = useState<{
+      visible: boolean;
+      title: string;
+      position: { x: number; y: number };
+      logoRect: DOMRect | null;
+      logoIndex: number;
+    }>({
+      visible: false,
+      title: "",
+      position: { x: 0, y: 0 },
+      logoRect: null,
+      logoIndex: -1,
+    });
+
     const targetVelocity = useMemo(() => {
       const magnitude = Math.abs(speed);
       const directionMultiplier = direction === "left" ? 1 : -1;
@@ -290,6 +350,55 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       if (pauseOnHover) setIsHovered(false);
     }, [pauseOnHover]);
 
+    // Tooltip handlers
+    const handleLogoMouseEnter = useCallback(
+      (event: React.MouseEvent, item: LogoItem, logoIndex: number) => {
+        const rect = (
+          event.currentTarget as HTMLElement
+        ).getBoundingClientRect();
+        const title = item.title || ("alt" in item && item.alt ? item.alt : "");
+
+        if (title) {
+          const viewportWidth = window.innerWidth;
+          const tooltipHeight = 40; // Approximate height of tooltip
+          const tooltipWidth = Math.min(title.length * 8 + 24, 200); // Approximate width
+
+          // Calculate center position of the logo
+          let x = rect.left + rect.width / 2;
+          let y = rect.top - 8; // Default: 8px above the logo
+
+          // Check if tooltip would go off the top of the viewport
+          if (y - tooltipHeight < 0) {
+            // Position below the logo instead
+            y = rect.bottom + 8;
+          }
+
+          // Ensure tooltip doesn't go off the left edge
+          if (x - tooltipWidth / 2 < 0) {
+            x = tooltipWidth / 2 + 10; // 10px margin from left edge
+          }
+
+          // Ensure tooltip doesn't go off the right edge
+          if (x + tooltipWidth / 2 > viewportWidth) {
+            x = viewportWidth - tooltipWidth / 2 - 10; // 10px margin from right edge
+          }
+
+          setTooltipState({
+            visible: true,
+            title,
+            position: { x, y },
+            logoRect: rect,
+            logoIndex,
+          });
+        }
+      },
+      []
+    );
+
+    const handleLogoMouseLeave = useCallback(() => {
+      setTooltipState((prev) => ({ ...prev, visible: false }));
+    }, []);
+
     const renderLogoItem = useCallback(
       (item: LogoItem, key: React.Key) => {
         const isNodeItem = "node" in item;
@@ -347,11 +456,30 @@ export const LogoLoop = React.memo<LogoLoopProps>(
             aria-label={itemAriaLabel || "logo link"}
             target="_blank"
             rel="noreferrer noopener"
+            onMouseEnter={(e) =>
+              handleLogoMouseEnter(
+                e,
+                item,
+                parseInt(key.toString().split("-")[1] || "0")
+              )
+            }
+            onMouseLeave={handleLogoMouseLeave}
           >
             {content}
           </a>
         ) : (
-          content
+          <div
+            onMouseEnter={(e) =>
+              handleLogoMouseEnter(
+                e,
+                item,
+                parseInt(key.toString().split("-")[1] || "0")
+              )
+            }
+            onMouseLeave={handleLogoMouseLeave}
+          >
+            {content}
+          </div>
         );
 
         return (
@@ -367,7 +495,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           </li>
         );
       },
-      [scaleOnHover]
+      [scaleOnHover, handleLogoMouseEnter, handleLogoMouseLeave]
     );
 
     const logoLists = useMemo(
@@ -437,6 +565,14 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         >
           {logoLists}
         </div>
+
+        {/* Tooltip */}
+        <LogoTooltip
+          visible={tooltipState.visible}
+          title={tooltipState.title}
+          position={tooltipState.position}
+          logoRect={tooltipState.logoRect}
+        />
       </div>
     );
   }
