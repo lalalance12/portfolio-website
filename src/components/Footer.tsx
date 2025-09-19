@@ -201,16 +201,6 @@ export default function Footer() {
                   Contact
                 </button>
               </li>
-              <li>
-                <Link
-                  href="/resume"
-                  className="hover:text-primary transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Resume
-                </Link>
-              </li>
             </ul>
           </div>
 
