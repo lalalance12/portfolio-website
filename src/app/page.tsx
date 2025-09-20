@@ -6,12 +6,14 @@ import ContactSection from "../components/ContactSection";
 
 export default function Home() {
   return (
-    <div className="max-w-7xl mx-auto">
+    <>
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
-    </div>
+      <div className="max-w-7xl mx-auto">
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
+      </div>
+    </>
   );
 }
