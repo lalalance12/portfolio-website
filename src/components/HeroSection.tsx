@@ -18,7 +18,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 overflow-hidden"
+      className="relative w-full py-10 sm:py-10 md:py-10 lg:py-10 xl:py-10 overflow-hidden"
     >
       {/* Background parallax layer */}
       <motion.div
@@ -162,7 +162,7 @@ export default function HeroSection() {
               duration={0.8}
               delay={0.8}
             >
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-6 w-full sm:w-auto px-4 sm:px-0 text-secondary">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-6 w-full sm:w-auto px-4 sm:px-0 text-secondary mb-10 sm:mb-10 md:mb-10">
                 <motion.a
                   href="#projects"
                   className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 bg-primary hover:bg-primary-dark text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 dark:focus:ring-primary/30 focus:ring-offset-2"
@@ -221,10 +221,11 @@ export default function HeroSection() {
 
       <ScrollVelocity
         texts={[
-          "Software Engineer  ||  Full Stack Developer  ||",
-          "Problem Solver  ||  Tech Innovator  ||",
+          "Software Engineer  ✦  Full Stack Developer  ✦",
+          "Problem Solver  ✦  Tech Innovator  ✦",
         ]}
-        velocity={20}
+        velocity={80}
+        className="mb-2"
       />
     </section>
   );

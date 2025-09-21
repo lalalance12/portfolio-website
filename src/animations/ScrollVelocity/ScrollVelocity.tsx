@@ -122,11 +122,6 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
       return `${wrap(-copyWidth, 0, v)}px`;
     });
 
-    // Add skew based on velocity
-    const skewX = useTransform(velocityFactor, [-5, 5], [20, -20], {
-      clamp: false,
-    });
-
     const directionFactor = useRef<number>(1);
     useAnimationFrame((t, delta) => {
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
@@ -137,7 +132,9 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
         directionFactor.current = 1;
       }
 
-      moveBy += directionFactor.current * moveBy * velocityFactor.get();
+      // Apply velocity factor smoothly to prevent distortion
+      const velocityInfluence = Math.max(-1, Math.min(1, velocityFactor.get()));
+      moveBy *= 1 + velocityInfluence * 0.5;
       baseX.set(baseX.get() + moveBy);
     });
 
@@ -160,8 +157,8 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
         style={parallaxStyle}
       >
         <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]`}
-          style={{ x, skewX, ...scrollerStyle }}
+          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-black tracking-wider drop-shadow md:text-[5rem] md:leading-[5rem]`}
+          style={{ x, ...scrollerStyle }}
         >
           {spans}
         </motion.div>
