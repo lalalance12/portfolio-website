@@ -10,6 +10,11 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
+interface ProjectImage {
+  src: string;
+  title: string;
+}
+
 interface Project {
   id: string;
   title: string;
@@ -24,7 +29,7 @@ interface Project {
   liveUrl?: string;
   features: string[];
   achievements: string[];
-  images?: string[];
+  images?: (string | ProjectImage)[];
 }
 
 interface ModalContextType {
@@ -156,14 +161,46 @@ export function ModalProvider({ children }: { children: ReactNode }) {
                       className="relative w-full h-full"
                     >
                       <Image
-                        src={project.images![currentImageIndex]}
-                        alt={`${project.title} - Image ${
-                          currentImageIndex + 1
-                        }`}
+                        src={
+                          typeof project.images![currentImageIndex] === "string"
+                            ? (project.images![currentImageIndex] as string)
+                            : (
+                                project.images![
+                                  currentImageIndex
+                                ] as ProjectImage
+                              ).src
+                        }
+                        alt={
+                          typeof project.images![currentImageIndex] === "string"
+                            ? `${project.title} - Image ${
+                                currentImageIndex + 1
+                              }`
+                            : (
+                                project.images![
+                                  currentImageIndex
+                                ] as ProjectImage
+                              ).title
+                        }
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                       />
+
+                      {/* Image Title Overlay */}
+                      {typeof project.images![currentImageIndex] !==
+                        "string" && (
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 pb-6">
+                          <p className="text-white font-medium text-sm md:text-base text-center">
+                            {
+                              (
+                                project.images![
+                                  currentImageIndex
+                                ] as ProjectImage
+                              ).title
+                            }
+                          </p>
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
 
@@ -230,12 +267,17 @@ export function ModalProvider({ children }: { children: ReactNode }) {
                             : "border-slate-200 hover:border-slate-300 opacity-60 hover:opacity-100"
                         }`}
                         aria-label={`Go to image ${index + 1}`}
+                        title={
+                          typeof image !== "string"
+                            ? image.title
+                            : `Image ${index + 1}`
+                        }
                       >
                         <Image
-                          src={image}
+                          src={typeof image === "string" ? image : image.src}
                           alt={`Thumbnail ${index + 1}`}
                           fill
-                          className="object-cover"
+                          className="object-contain"
                           sizes="80px"
                         />
                       </button>
@@ -372,19 +414,21 @@ export function ModalProvider({ children }: { children: ReactNode }) {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-semibold hover:bg-gray-800 transition-all duration-200 shadow-lg hover:shadow-xl"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-5 h-5 text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                     </svg>
-                    <span className="font-semibold">View on GitHub</span>
+                    <span className="text-white font-semibold">
+                      View on GitHub
+                    </span>
                   </motion.a>
                 )}
                 {project.liveUrl && (

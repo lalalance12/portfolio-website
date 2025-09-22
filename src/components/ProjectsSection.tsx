@@ -6,6 +6,7 @@ import DecryptedText from "../textanimations/DecryptedText/DecryptedText";
 import CountUp from "../animations/CountUp/CountUp";
 import { useState } from "react";
 import { useModal } from "./ModalProvider";
+import Image from "next/image";
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -25,12 +26,91 @@ export default function ProjectsSection() {
         "Next.js",
         "TypeScript",
         "Supabase",
+        "Tailwind CSS",
         "Real-time",
         "Healthcare",
       ],
       type: "Web Application",
       date: "Aug 2024 – Feb 2025",
       isPublic: false, // Client project - no public GitHub
+      images: [
+        {
+          src: "/projects/chartlink/admin-dashboard.png",
+          title: "Admin Dashboard - System Overview",
+        },
+        {
+          src: "/projects/chartlink/nurse-dashboard.png",
+          title: "Nurse Dashboard - Patient Management",
+        },
+        {
+          src: "/projects/chartlink/nurse-patientVisits.png",
+          title: "Nurse - Patient Visits List",
+        },
+        {
+          src: "/projects/chartlink/nurse-patientVisits-add.png",
+          title: "Nurse - Add New Patient Visit",
+        },
+        {
+          src: "/projects/chartlink/doctor-dashboard.png",
+          title: "Doctor Dashboard - Main Interface",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientVisits.png",
+          title: "Doctor - Patient Visits Overview",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientVisits-viewLog.png",
+          title: "Doctor - View Patient Visit Log",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientRecord-patientInfo.png",
+          title: "Doctor - Patient Information",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientRecord-medicalHistory.png",
+          title: "Doctor - Medical History Records",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientRecord-familyHistory.png",
+          title: "Doctor - Family History",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientRecord-socialHistory.png",
+          title: "Doctor - Social History",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientRecord-immunization.png",
+          title: "Doctor - Immunization Records",
+        },
+        {
+          src: "/projects/chartlink/doctor-patientRecord-patientLogs.png",
+          title: "Doctor - Patient Activity Logs",
+        },
+        {
+          src: "/projects/chartlink/medtech-dashboard.png",
+          title: "Medical Technologist Dashboard",
+        },
+        {
+          src: "/projects/chartlink/medtech-labRequest.png",
+          title: "MedTech - Lab Requests Queue",
+        },
+        {
+          src: "/projects/chartlink/medtech-labRequest-labDetails.png",
+          title: "MedTech - Lab Request Details",
+        },
+        {
+          src: "/projects/chartlink/medtech-labRecord.png",
+          title: "MedTech - Laboratory Records",
+        },
+        {
+          src: "/projects/chartlink/pharmacist-dashboard.png",
+          title: "Pharmacist Dashboard",
+        },
+        {
+          src: "/projects/chartlink/pharmacist-inventory.png",
+          title: "Pharmacist - Inventory Management",
+        },
+      ],
       features: [
         "Scalable clinic workflow system",
         "Supabase real-time database integration",
@@ -60,6 +140,10 @@ export default function ProjectsSection() {
       date: "Jan 24, 2024",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/clinical-management-system",
+      images: [
+        "/projects/clinical-management/main.jpg",
+        "/projects/clinical-management/workflow.jpg",
+      ],
       features: [
         "Multi-role user management",
         "Patient record management",
@@ -86,6 +170,11 @@ export default function ProjectsSection() {
       date: "Sep 2024 – Jul 2025",
       isPublic: false,
       liveUrl: "https://thesilahispublication.com",
+      images: [
+        "/projects/silahis-publication/main.jpg",
+        "/projects/silahis-publication/cms.jpg",
+        "/projects/silahis-publication/mobile.jpg",
+      ],
       features: [
         "Cloud-native architecture",
         "Custom CMS with React & Laravel",
@@ -121,6 +210,11 @@ export default function ProjectsSection() {
       date: "Latest Research",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/guideon-chatbot",
+      images: [
+        "/projects/guideon-chatbot/main.jpg",
+        "/projects/guideon-chatbot/interface.jpg",
+        "/projects/guideon-chatbot/recommendations.jpg",
+      ],
       features: [
         "AI-powered learning path recommendations",
         "Locally hosted LLM (Llama 3 via Ollama)",
@@ -158,6 +252,10 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/CNN-based-multi-class-flower-classification",
+      images: [
+        "/projects/flower-classification/main.jpg",
+        "/projects/flower-classification/results.jpg",
+      ],
       features: [
         "Multi-class flower classification (5 categories)",
         "Transfer learning implementation",
@@ -185,6 +283,10 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/monte-carlo-simulation-of-item-probability-in-counter-strike-2",
+      images: [
+        "/projects/monte-carlo-simulation/main.jpg",
+        "/projects/monte-carlo-simulation/visualization.jpg",
+      ],
       features: [
         "Monte Carlo probability modeling",
         "Multi-factor item simulation",
@@ -218,6 +320,10 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/heart-disease-prediction-model-using-random-forest",
+      images: [
+        "/projects/heart-disease-prediction/main.jpg",
+        "/projects/heart-disease-prediction/analysis.jpg",
+      ],
       features: [
         "Random Forest classification",
         "Feature importance analysis",
@@ -244,6 +350,10 @@ export default function ProjectsSection() {
       date: "Nov 21, 2024",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/binary-classification",
+      images: [
+        "/projects/binary-classification/main.jpg",
+        "/projects/binary-classification/notebook.jpg",
+      ],
       features: [
         "Multiple classification algorithms",
         "Data preprocessing techniques",
@@ -270,6 +380,10 @@ export default function ProjectsSection() {
       date: "Updated recently",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/multiplexing-videos",
+      images: [
+        "/projects/multiplexing-videos/main.jpg",
+        "/projects/multiplexing-videos/effects.jpg",
+      ],
       features: [
         "Real-time video processing",
         "MPI parallel computing",
@@ -360,94 +474,75 @@ export default function ProjectsSection() {
                 className="group bg-white/95 backdrop-blur-md rounded-2xl p-6 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 h-full cursor-pointer flex flex-col"
                 onClick={() => setSelectedProject(project)}
               >
-                {/* Project Image/Icon Placeholder */}
-                <div className="relative overflow-hidden rounded-xl mb-6 bg-gradient-to-br from-primary/60 via-primary/50 to-primary-dark/60 flex items-center justify-center aspect-[4/3] group-hover:shadow-lg transition-shadow duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Project Image */}
+                <div className="relative overflow-hidden rounded-xl mb-6 bg-gradient-to-br from-primary/10 via-primary/5 to-primary-dark/10 aspect-[4/3] group-hover:shadow-lg transition-shadow duration-500">
+                  {project.images && project.images.length > 0 ? (
+                    <Image
+                      src={
+                        typeof project.images[0] === "string"
+                          ? project.images[0]
+                          : project.images[0].src
+                      }
+                      alt={
+                        typeof project.images[0] === "string"
+                          ? project.title
+                          : project.images[0].title
+                      }
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-contain"
+                      priority={index < 3}
+                    />
+                  ) : (
+                    // Default placeholder when no image
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 flex items-center justify-center flex-col gap-3 p-6">
+                      {/* Image placeholder icon */}
+                      <svg
+                        className="w-16 h-16 text-slate-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <div className="text-center">
+                        <p className="text-slate-400 text-sm font-medium">
+                          {project.type}
+                        </p>
+                        <p className="text-slate-300 text-xs mt-1">
+                          No preview available
+                        </p>
+                      </div>
+                    </div>
+                  )}
 
-                  {/* Project Type Icon */}
-                  <div className="relative z-10">
-                    {project.type === "Machine Learning" && (
+                  {/* Image count badge */}
+                  {project.images && project.images.length > 1 && (
+                    <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-xs font-medium z-10 flex items-center gap-1">
                       <svg
-                        width="60"
-                        height="60"
+                        className="w-3.5 h-3.5"
+                        fill="none"
+                        stroke="currentColor"
                         viewBox="0 0 24 24"
-                        className="text-slate-700 group-hover:scale-110 transition-transform duration-500"
                       >
                         <path
-                          fill="currentColor"
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                         />
                       </svg>
-                    )}
-                    {project.type === "Computer Vision" && (
-                      <svg
-                        width="60"
-                        height="60"
-                        viewBox="0 0 24 24"
-                        className="text-slate-700 group-hover:scale-110 transition-transform duration-500"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 8a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z"
-                        />
-                      </svg>
-                    )}
-                    {project.type === "Web Application" && (
-                      <svg
-                        width="60"
-                        height="60"
-                        viewBox="0 0 24 24"
-                        className="text-slate-700 group-hover:scale-110 transition-transform duration-500"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"
-                        />
-                      </svg>
-                    )}
-                    {project.type === "Simulation" && (
-                      <svg
-                        width="60"
-                        height="60"
-                        viewBox="0 0 24 24"
-                        className="text-slate-700 group-hover:scale-110 transition-transform duration-500"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-12H7v2h8V5z"
-                        />
-                      </svg>
-                    )}
-                    {project.type === "Web Platform" && (
-                      <svg
-                        width="60"
-                        height="60"
-                        viewBox="0 0 24 24"
-                        className="text-slate-700 group-hover:scale-110 transition-transform duration-500"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM21 18H3V6h18v12z"
-                        />
-                      </svg>
-                    )}
-                    {project.type === "AI/ML Application" && (
-                      <svg
-                        width="60"
-                        height="60"
-                        viewBox="0 0 24 24"
-                        className="text-slate-700 group-hover:scale-110 transition-transform duration-500"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
-                        />
-                      </svg>
-                    )}
-                  </div>
+                      {project.images.length}
+                    </div>
+                  )}
 
                   {/* Click to view overlay */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-10">
                     <div className="text-white text-center">
                       <svg
                         className="w-8 h-8 mx-auto mb-2"
