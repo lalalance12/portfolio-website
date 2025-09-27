@@ -140,10 +140,6 @@ export default function ProjectsSection() {
       date: "Jan 24, 2024",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/clinical-management-system",
-      images: [
-        "/projects/clinical-management/main.jpg",
-        "/projects/clinical-management/workflow.jpg",
-      ],
       features: [
         "Multi-role user management",
         "Patient record management",
@@ -170,11 +166,6 @@ export default function ProjectsSection() {
       date: "Sep 2024 – Jul 2025",
       isPublic: false,
       liveUrl: "https://thesilahispublication.com",
-      images: [
-        "/projects/silahis-publication/main.jpg",
-        "/projects/silahis-publication/cms.jpg",
-        "/projects/silahis-publication/mobile.jpg",
-      ],
       features: [
         "Cloud-native architecture",
         "Custom CMS with React & Laravel",
@@ -210,11 +201,6 @@ export default function ProjectsSection() {
       date: "Latest Research",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/guideon-chatbot",
-      images: [
-        "/projects/guideon-chatbot/main.jpg",
-        "/projects/guideon-chatbot/interface.jpg",
-        "/projects/guideon-chatbot/recommendations.jpg",
-      ],
       features: [
         "AI-powered learning path recommendations",
         "Locally hosted LLM (Llama 3 via Ollama)",
@@ -252,10 +238,6 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/CNN-based-multi-class-flower-classification",
-      images: [
-        "/projects/flower-classification/main.jpg",
-        "/projects/flower-classification/results.jpg",
-      ],
       features: [
         "Multi-class flower classification (5 categories)",
         "Transfer learning implementation",
@@ -283,10 +265,6 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/monte-carlo-simulation-of-item-probability-in-counter-strike-2",
-      images: [
-        "/projects/monte-carlo-simulation/main.jpg",
-        "/projects/monte-carlo-simulation/visualization.jpg",
-      ],
       features: [
         "Monte Carlo probability modeling",
         "Multi-factor item simulation",
@@ -320,10 +298,6 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/heart-disease-prediction-model-using-random-forest",
-      images: [
-        "/projects/heart-disease-prediction/main.jpg",
-        "/projects/heart-disease-prediction/analysis.jpg",
-      ],
       features: [
         "Random Forest classification",
         "Feature importance analysis",
@@ -350,10 +324,6 @@ export default function ProjectsSection() {
       date: "Nov 21, 2024",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/binary-classification",
-      images: [
-        "/projects/binary-classification/main.jpg",
-        "/projects/binary-classification/notebook.jpg",
-      ],
       features: [
         "Multiple classification algorithms",
         "Data preprocessing techniques",
@@ -380,10 +350,6 @@ export default function ProjectsSection() {
       date: "Updated recently",
       isPublic: true,
       githubUrl: "https://github.com/lalalance12/multiplexing-videos",
-      images: [
-        "/projects/multiplexing-videos/main.jpg",
-        "/projects/multiplexing-videos/effects.jpg",
-      ],
       features: [
         "Real-time video processing",
         "MPI parallel computing",
