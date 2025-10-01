@@ -34,7 +34,7 @@ export default function Footer() {
               <a
                 href="mailto:lompon.xerxeslancelaurenz@gmail.com"
                 title="Send email to Xerxes Lompon"
-                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
+                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-secondary/70 group-hover:text-secondary"
@@ -55,7 +55,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Visit Xerxes Lompon's LinkedIn profile"
-                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
+                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-secondary/70 group-hover:text-secondary"
@@ -70,7 +70,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Visit Xerxes Lompon's GitHub profile"
-                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
+                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-secondary/70 group-hover:text-secondary"
@@ -85,7 +85,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Connect with Xerxes Lompon on Discord"
-                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-dark transition-all duration-300 group shadow-lg hover:shadow-primary/25"
+                className="w-10 h-10 bg-gradient-to-br from-neutral/50 to-neutral/30 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary transition-all duration-300 group shadow-lg hover:shadow-primary/25"
               >
                 <svg
                   className="w-5 h-5 text-secondary/70 group-hover:text-secondary"

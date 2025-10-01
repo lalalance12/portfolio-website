@@ -127,11 +127,11 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="w-full px-8 py-24 bg-white dark:bg-white relative overflow-hidden"
+      className="w-full px-8 py-24 bg-white relative overflow-hidden"
     >
       {/* Background parallax layers */}
       <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary-dark/5 to-primary/10 dark:from-primary/10 dark:via-primary-dark/5 dark:to-primary/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary-dark/5 to-primary/10"></div>
         <div className="absolute inset-0">
           <svg
             className="w-full h-full"
@@ -151,10 +151,10 @@ export default function SkillsSection() {
       <div className="max-w-6xl mx-auto relative z-10">
         <FadeContent blur={true} duration={1000} delay={200}>
           <motion.div className="text-center mb-16" style={{ y: contentY }}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
               A comprehensive toolkit of modern technologies and frameworks for
               building exceptional digital experiences
             </p>
@@ -164,7 +164,7 @@ export default function SkillsSection() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Frontend */}
             <motion.div
-              className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl"
+              className="group relative bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -210,13 +210,13 @@ export default function SkillsSection() {
                   </div>
                 </motion.div>
 
-                <h3 className="text-2xl font-semibold mb-6 text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-2xl font-semibold mb-6 text-slate-800 group-hover:text-primary transition-colors duration-300">
                   Frontend
                 </h3>
 
                 <div className="space-y-3">
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
@@ -226,7 +226,7 @@ export default function SkillsSection() {
                     <span className="text-sm">React & Next.js</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -236,7 +236,7 @@ export default function SkillsSection() {
                     <span className="text-sm">TypeScript</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
@@ -246,7 +246,7 @@ export default function SkillsSection() {
                     <span className="text-sm">Tailwind CSS</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
@@ -261,7 +261,7 @@ export default function SkillsSection() {
 
             {/* Backend */}
             <motion.div
-              className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl"
+              className="group relative bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -307,13 +307,13 @@ export default function SkillsSection() {
                   </div>
                 </motion.div>
 
-                <h3 className="text-2xl font-semibold mb-6 text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-2xl font-semibold mb-6 text-slate-800 group-hover:text-primary transition-colors duration-300">
                   Backend
                 </h3>
 
                 <div className="space-y-3">
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -323,7 +323,7 @@ export default function SkillsSection() {
                     <span className="text-sm">Laravel & PHP</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
@@ -333,7 +333,7 @@ export default function SkillsSection() {
                     <span className="text-sm">Django & Python</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
@@ -343,7 +343,7 @@ export default function SkillsSection() {
                     <span className="text-sm">Node.js & Express</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
@@ -358,7 +358,7 @@ export default function SkillsSection() {
 
             {/* Database & Cloud */}
             <motion.div
-              className="group relative bg-white/90 dark:bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl"
+              className="group relative bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-border/50 shadow-xl"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -401,13 +401,13 @@ export default function SkillsSection() {
                   </div>
                 </motion.div>
 
-                <h3 className="text-2xl font-semibold mb-6 text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-2xl font-semibold mb-6 text-slate-800 group-hover:text-primary transition-colors duration-300">
                   Database & Cloud
                 </h3>
 
                 <div className="space-y-3">
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
@@ -417,7 +417,7 @@ export default function SkillsSection() {
                     <span className="text-sm">PostgreSQL & pgvector</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
@@ -427,7 +427,7 @@ export default function SkillsSection() {
                     <span className="text-sm">AWS & Supabase</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
@@ -437,7 +437,7 @@ export default function SkillsSection() {
                     <span className="text-sm">AI/ML (Llama 3, Ollama)</span>
                   </motion.div>
                   <motion.div
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300"
+                    className="flex items-center gap-3 text-slate-600"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.8 }}

@@ -202,12 +202,12 @@ export default function Header() {
       return `${baseClass} font-medium text-secondary shadow-lg transform scale-105`;
     }
 
-    return `${baseClass} text-neutral dark:text-neutral hover:bg-neutral/10 dark:hover:bg-neutral/10 hover:scale-105`;
+    return `${baseClass} text-neutral hover:bg-neutral/10 hover:scale-105`;
   };
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full px-4 md:px-6 lg:px-8 py-4 md:py-6 flex justify-between items-center bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-sm">
+      <header className="sticky top-0 z-50 w-full px-4 md:px-6 lg:px-8 py-4 md:py-6 flex justify-between items-center bg-white backdrop-blur-sm border-b border-border shadow-sm">
         <div className="text-lg md:text-xl font-medium flex items-center">
           <Link
             href="/"
@@ -215,9 +215,7 @@ export default function Header() {
             className="flex items-center gap-2"
           >
             <div className="flex items-center"></div>
-            <span className="text-neutral dark:text-neutral font-bold">
-              Xerxes Portfolio
-            </span>
+            <span className="text-neutral font-bold">Xerxes Portfolio</span>
           </Link>
         </div>
 
@@ -225,7 +223,7 @@ export default function Header() {
         <div className="hidden md:flex lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 items-center lg:top-1/2 lg:-translate-y-1/2">
           <nav
             ref={navRef}
-            className="relative flex items-center gap-2 md:gap-4 rounded-full bg-white dark:bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-20"
+            className="relative flex items-center gap-2 md:gap-4 rounded-full bg-white backdrop-blur-sm px-2 py-2 shadow-md border border-border transition-all duration-20"
           >
             <motion.div
               className="absolute -z-10 bg-primary pointer-events-none"
@@ -277,7 +275,7 @@ export default function Header() {
           aria-label="Toggle mobile menu"
         >
           <motion.span
-            className="w-6 h-0.5 bg-neutral dark:bg-neutral block"
+            className="w-6 h-0.5 bg-neutral block"
             animate={{
               rotate: isMobileMenuOpen ? 45 : 0,
               y: isMobileMenuOpen ? 6 : 0,
@@ -285,14 +283,14 @@ export default function Header() {
             transition={{ duration: 0.2 }}
           />
           <motion.span
-            className="w-6 h-0.5 bg-neutral dark:bg-neutral block"
+            className="w-6 h-0.5 bg-neutral block"
             animate={{
               opacity: isMobileMenuOpen ? 0 : 1,
             }}
             transition={{ duration: 0.2 }}
           />
           <motion.span
-            className="w-6 h-0.5 bg-neutral dark:bg-neutral block"
+            className="w-6 h-0.5 bg-neutral block"
             animate={{
               rotate: isMobileMenuOpen ? -45 : 0,
               y: isMobileMenuOpen ? -6 : 0,
@@ -315,7 +313,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white dark:bg-white backdrop-blur-sm border-b border-border shadow-lg"
+            className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white backdrop-blur-sm border-b border-border shadow-lg"
           >
             <nav className="flex flex-col py-4 px-6 space-y-4">
               {[
@@ -331,7 +329,7 @@ export default function Header() {
                   className={`text-left py-2 px-3 rounded-lg transition-all duration-200 ${
                     activeSection === id
                       ? "bg-primary/10 text-primary font-medium"
-                      : "text-neutral dark:text-neutral hover:bg-neutral/10"
+                      : "text-neutral hover:bg-neutral/10"
                   }`}
                 >
                   {label}

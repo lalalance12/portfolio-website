@@ -59,8 +59,8 @@ export default function HeroSection() {
                 />
 
                 {/* Main Circular Picture Container */}
-                <div className="relative w-full h-full bg-white/80 dark:bg-white/80 border-4 border-primary/50 dark:border-primary/50 rounded-full shadow-2xl flex items-center justify-center overflow-hidden backdrop-blur-sm group-hover:scale-105 transition-transform duration-500">
-                  <div className="text-center text-slate-500 dark:text-slate-400">
+                <div className="relative w-full h-full bg-white/80 border-4 border-primary/50 rounded-full shadow-2xl flex items-center justify-center overflow-hidden backdrop-blur-sm group-hover:scale-105 transition-transform duration-500">
+                  <div className="text-center text-slate-500">
                     <svg
                       className="w-8 h-8 mx-auto mb-4 opacity-50"
                       fill="none"
@@ -101,7 +101,7 @@ export default function HeroSection() {
               delay={0.3}
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">
-                <div className="mb-4 text-neutral dark:text-neutral text-center lg:text-left">
+                <div className="mb-4 text-neutral text-center lg:text-left">
                   Hi! I am{" "}
                   <DecryptedText
                     text="Xerxes"
@@ -110,7 +110,7 @@ export default function HeroSection() {
                     sequential={true}
                     revealDirection="center"
                     animateOn="view"
-                    className="text-primary dark:text-primary font-bold"
+                    className="text-primary font-bold"
                     encryptedClassName="text-slate-400"
                   />
                   , a
@@ -148,7 +148,7 @@ export default function HeroSection() {
             </AnimatedContent>
 
             <FadeContent blur={false} duration={800} delay={600}>
-              <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-6 sm:mb-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-6 sm:mb-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
                 I specialize in building scalable, efficient, and user-centric
                 systems. With hands-on experience across the full stack,
                 I&apos;ve delivered real-world projects using technologies like
@@ -165,7 +165,7 @@ export default function HeroSection() {
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-6 w-full sm:w-auto px-4 sm:px-0 text-secondary mb-10 sm:mb-10 md:mb-10">
                 <motion.a
                   href="#projects"
-                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 bg-primary hover:bg-primary-dark text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 dark:focus:ring-primary/30 focus:ring-offset-2"
+                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 bg-primary hover:bg-primary-dark text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2"
                   aria-label="View my projects and work"
                   onClick={(e) => {
                     e.preventDefault();
@@ -186,7 +186,7 @@ export default function HeroSection() {
                 </motion.a>
                 <motion.a
                   href="#contact"
-                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 border-2  bg-primary dark:border-primary text-primary dark:text-primary hover:bg-primary hover:text-secondary dark:hover:text-neutral transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 dark:focus:ring-primary/30 focus:ring-offset-2"
+                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 border-2 bg-primary text-primary hover:bg-primary hover:text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2"
                   aria-label="Get in touch with me"
                   onClick={(e) => {
                     e.preventDefault();

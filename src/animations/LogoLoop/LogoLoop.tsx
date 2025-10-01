@@ -145,21 +145,21 @@ const LogoTooltip: React.FC<{
     >
       {/* Tooltip bubble */}
       <div className="relative">
-        <div className="bg-slate-900 dark:bg-slate-700 text-white px-3 py-2 rounded-lg shadow-lg backdrop-blur-sm border border-slate-700 dark:border-slate-600 whitespace-nowrap text-sm font-medium">
+        <div className="bg-slate-900 text-white px-3 py-2 rounded-lg shadow-lg backdrop-blur-sm border border-slate-700 whitespace-nowrap text-sm font-medium">
           {title}
         </div>
         {/* Arrow */}
         {isAbove ? (
           // Arrow pointing down (tooltip above logo)
           <>
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-l-transparent border-r-transparent border-t-[6px] border-t-slate-900 dark:border-t-slate-700" />
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-l-transparent border-r-transparent border-t-[5px] border-t-slate-800 dark:border-t-slate-600" />
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-l-transparent border-r-transparent border-t-[6px] border-t-slate-900" />
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-l-transparent border-r-transparent border-t-[5px] border-t-slate-800" />
           </>
         ) : (
           // Arrow pointing up (tooltip below logo)
           <>
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-l-transparent border-r-transparent border-b-[6px] border-b-slate-900 dark:border-b-slate-700" />
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-l-transparent border-r-transparent border-b-[5px] border-b-slate-800 dark:border-b-slate-600" />
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-l-transparent border-r-transparent border-b-[6px] border-b-slate-900" />
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-l-transparent border-r-transparent border-b-[5px] border-b-slate-800" />
           </>
         )}
       </div>
@@ -335,7 +335,6 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           "[--logoloop-gap:32px]",
           "[--logoloop-logoHeight:28px]",
           "[--logoloop-fadeColorAuto:#ffffff]",
-          "dark:[--logoloop-fadeColorAuto:#0b0b0b]",
           scaleOnHover && "py-[calc(var(--logoloop-logoHeight)*0.1)]",
           className
         ),

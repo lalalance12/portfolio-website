@@ -32,21 +32,6 @@ html {
   --font-sans: var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #fdba74; /* Lighter orange for dark mode */
-    --primary-dark: #f97316;
-    --secondary: #FAFAFA; /* Off-white */
-    --neutral: #1A1A1A; /* Dark gray */
-    --background: #FAFAFA; /* Force off-white background even in dark mode */
-    --foreground: #1A1A1A; /* Dark gray text */
-    --foreground-muted: #a1a1aa;
-    --border: #374151;
-    --border-light: #2d3748;
-    --accent: #22d3ee;
-    --gradient-primary: linear-gradient(135deg, #fdba74 0%, #f97316 100%);
-  }
-}
 
 /* Custom Animations for Liquid Effects */
 @keyframes float {

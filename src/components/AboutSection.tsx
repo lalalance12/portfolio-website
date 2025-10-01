@@ -13,7 +13,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="w-full px-8 py-24 bg-white dark:bg-white relative overflow-hidden"
+      className="w-full px-8 py-24 bg-white relative overflow-hidden"
     >
       {/* Background parallax layer */}
       <motion.div
@@ -29,7 +29,7 @@ export default function AboutSection() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
               About Me
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Crafting innovative digital solutions as a passionate software
               engineer based in Cagayan de Oro, Philippines.
             </p>
@@ -53,9 +53,7 @@ export default function AboutSection() {
                   <span className="text-2xl">💻</span>
                 </motion.div>
                 <h3 className="font-semibold text-lg mb-2">Full-Stack</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  End-to-end development
-                </p>
+                <p className="text-sm text-slate-500">End-to-end development</p>
               </div>
             </motion.div>
             <motion.div
@@ -73,9 +71,7 @@ export default function AboutSection() {
                   <span className="text-2xl">🤖</span>
                 </motion.div>
                 <h3 className="font-semibold text-lg mb-2">AI/ML</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  Intelligent solutions
-                </p>
+                <p className="text-sm text-slate-500">Intelligent solutions</p>
               </div>
             </motion.div>
             <motion.div
@@ -93,9 +89,7 @@ export default function AboutSection() {
                   <span className="text-2xl">☁️</span>
                 </motion.div>
                 <h3 className="font-semibold text-lg mb-2">Cloud Tech</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  Scalable architecture
-                </p>
+                <p className="text-sm text-slate-500">Scalable architecture</p>
               </div>
             </motion.div>
           </div>
@@ -117,7 +111,7 @@ export default function AboutSection() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary-dark/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <motion.div
-                  className="relative bg-white/80 dark:bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 transition-colors duration-300"
+                  className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 transition-colors duration-300"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
@@ -130,24 +124,24 @@ export default function AboutSection() {
                         Silahis Student Publication
                       </p>
                     </div>
-                    <span className="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
+                    <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
                       Sep 2024 – July 2025
                     </span>
                   </div>
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-primary">
                         Cloud Deployment:
                       </span>{" "}
                       AWS infrastructure with Laravel Forge
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-primary">
                         CMS Development:
                       </span>{" "}
                       React & Laravel with automation
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-primary">UI/UX:</span>{" "}
                       Mobile-responsive design from Figma
                     </div>
@@ -179,20 +173,20 @@ export default function AboutSection() {
                         ChartLink (Freelance)
                       </p>
                     </div>
-                    <span className="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
+                    <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
                       Aug 2024 – Feb 2025
                     </span>
                   </div>
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-accent">Backend:</span>{" "}
                       Supabase real-time database
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-accent">Frontend:</span>{" "}
                       Next.js with 30% faster load times
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-accent">Delivery:</span>{" "}
                       100% on-time agile development
                     </div>
@@ -211,7 +205,7 @@ export default function AboutSection() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <motion.div
-                  className="relative bg-white/80 dark:bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 transition-colors duration-300"
+                  className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/20 transition-colors duration-300"
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
@@ -224,22 +218,22 @@ export default function AboutSection() {
                         OneQuantum Philippines
                       </p>
                     </div>
-                    <span className="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
+                    <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
                       Feb 2024 – Nov 2024
                     </span>
                   </div>
                   <div className="grid md:grid-cols-3 gap-4">
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-primary">Backend:</span>{" "}
                       Node.js & Express.js architecture
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-primary">
                         Deployment:
                       </span>{" "}
                       Vercel with performance optimization
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-sm text-slate-600">
                       <span className="font-medium text-primary">
                         Communication:
                       </span>{" "}

@@ -68,7 +68,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
         onClick={onClose}
       >
         <div
-          className="bg-white dark:bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-200 dark:border-slate-700"
+          className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-200"
           onClick={(e) => e.stopPropagation()}
           autoFocus
           tabIndex={-1}
@@ -76,7 +76,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
           <div className="p-8">
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-2">
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
                   {project.title}
                 </h3>
                 <p className="text-primary font-medium">{project.type}</p>
