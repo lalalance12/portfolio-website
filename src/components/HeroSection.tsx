@@ -6,7 +6,6 @@ import RotatingText from "./RotatingText";
 import FadeContent from "../animations/FadeContent/FadeContent";
 import AnimatedContent from "../animations/AnimatedContent/AnimatedContent";
 import DecryptedText from "../textanimations/DecryptedText/DecryptedText";
-import ScrollVelocity from "../animations/ScrollVelocity/ScrollVelocity";
 
 export default function HeroSection() {
   // Parallax scroll effects
@@ -218,15 +217,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </FadeContent>
-
-      <ScrollVelocity
-        texts={[
-          "Software Engineer  ✦  Full Stack Developer  ✦",
-          "Problem Solver  ✦  Tech Innovator  ✦",
-        ]}
-        velocity={80}
-        className="mb-2"
-      />
     </section>
   );
 }

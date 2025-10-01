@@ -91,7 +91,7 @@ export default function ContactSection() {
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <FadeContent blur={true} duration={1000} delay={300}>
-          <motion.div className="mb-2" style={{ y: contentY }}>
+          <motion.div className="pt-40 mb-2" style={{ y: contentY }}>
             <h2
               className="text-4xl md:text-5xl font-bold mb-2"
               style={{
