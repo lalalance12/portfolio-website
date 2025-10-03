@@ -298,6 +298,24 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/heart-disease-prediction-model-using-random-forest",
+      images: [
+        {
+          src: "/projects/heart-disease-prediction/confusion-matrix.png",
+          title: "Confusion Matrix - Model Performance Metrics",
+        },
+        {
+          src: "/projects/heart-disease-prediction/feature-importance.png",
+          title: "Feature Importance - Key Factors in Prediction",
+        },
+        {
+          src: "/projects/heart-disease-prediction/cross-validation-score.png",
+          title: "Cross-Validation Score - Model Validation",
+        },
+        {
+          src: "/projects/heart-disease-prediction/classification-report.png",
+          title: "Classification Report - Detailed Performance Metrics",
+        },
+      ],
       features: [
         "Random Forest classification",
         "Feature importance analysis",
