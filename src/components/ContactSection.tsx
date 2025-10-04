@@ -1,18 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import FadeContent from "../animations/FadeContent/FadeContent";
 import AnimatedContent from "../animations/AnimatedContent/AnimatedContent";
 
 export default function ContactSection() {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+
   // Parallax scroll effects
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -250]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const copyToClipboard = async (text: string) => {
+
+  const copyToClipboard = async (text: string, type: "email" | "phone") => {
     try {
       await navigator.clipboard.writeText(text);
-      // Optional: Add visual feedback here
+      if (type === "email") {
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2000);
+      } else {
+        setCopiedPhone(true);
+        setTimeout(() => setCopiedPhone(false), 2000);
+      }
     } catch {
       // Fallback for older browsers
       const textArea = document.createElement("textarea");
@@ -22,6 +33,13 @@ export default function ContactSection() {
       textArea.select();
       try {
         document.execCommand("copy");
+        if (type === "email") {
+          setCopiedEmail(true);
+          setTimeout(() => setCopiedEmail(false), 2000);
+        } else {
+          setCopiedPhone(true);
+          setTimeout(() => setCopiedPhone(false), 2000);
+        }
       } catch {
         console.error("Failed to copy text");
       }
@@ -178,31 +196,40 @@ export default function ContactSection() {
                 >
                   Drop me a line anytime
                 </p>
-                <button
-                  onClick={() =>
-                    copyToClipboard("lompon.xerxeslancelaurenz@gmail.com")
-                  }
-                  className="font-medium text-sm transition-colors duration-200 hover:underline"
-                  style={{ color: "var(--primary)" }}
-                  onMouseEnter={(e) =>
-                    ((e.target as HTMLElement).style.color =
-                      "var(--primary-dark)")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.target as HTMLElement).style.color = "var(--primary)")
-                  }
-                >
-                  lompon.xerxeslancelaurenz@gmail.com
-                </button>
+                <div className="flex flex-col items-center gap-2">
+                  <a
+                    href="mailto:lompon.xerxeslancelaurenz@gmail.com"
+                    className="font-medium text-sm transition-colors duration-200 hover:underline"
+                    style={{ color: "var(--primary)" }}
+                    onMouseEnter={(e) =>
+                      ((e.target as HTMLElement).style.color =
+                        "var(--primary-dark)")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.target as HTMLElement).style.color = "var(--primary)")
+                    }
+                  >
+                    lompon.xerxeslancelaurenz@gmail.com
+                  </a>
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        "lompon.xerxeslancelaurenz@gmail.com",
+                        "email"
+                      )
+                    }
+                    className="px-3 py-1 text-xs bg-primary/10 hover:bg-primary/20 text-primary rounded-md transition-colors duration-200"
+                    aria-label="Copy email to clipboard"
+                  >
+                    {copiedEmail ? "✓ Copied!" : "Copy"}
+                  </button>
+                </div>
               </div>
             </motion.div>
 
             {/* LinkedIn Card */}
-            <motion.a
-              href="https://linkedin.com/in/xerxes-lompon"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block"
+            <motion.div
+              className="group relative"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -257,27 +284,27 @@ export default function ContactSection() {
                 >
                   Let&apos;s build our network
                 </p>
-                <span
-                  className="font-medium text-sm transition-colors duration-200 inline-flex items-center"
-                  style={{ color: "#ea580c" }}
-                >
-                  Connect with me
-                  <svg
-                    className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <div className="flex flex-col items-center gap-2">
+                  <a
+                    href="https://linkedin.com/in/xerxes-lompon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-sm text-primary hover:text-primary-dark transition-colors duration-200 hover:underline"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
+                    linkedin.com/in/xerxes-lompon
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/xerxes-lompon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 text-xs bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary-dark rounded-md transition-colors duration-200 inline-block"
+                    aria-label="Visit LinkedIn profile"
+                  >
+                    Visit Profile
+                  </a>
+                </div>
               </div>
-            </motion.a>
+            </motion.div>
 
             {/* Phone Card */}
             <motion.div
@@ -342,20 +369,29 @@ export default function ContactSection() {
                 >
                   Quick conversations welcome
                 </p>
-                <button
-                  onClick={() => copyToClipboard("0956-6873-781")}
-                  className="font-medium text-sm transition-colors duration-200 hover:underline"
-                  style={{ color: "var(--primary)" }}
-                  onMouseEnter={(e) =>
-                    ((e.target as HTMLElement).style.color =
-                      "var(--primary-dark)")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.target as HTMLElement).style.color = "var(--primary)")
-                  }
-                >
-                  0956-6873-781
-                </button>
+                <div className="flex flex-col items-center gap-2">
+                  <a
+                    href="tel:+639566873781"
+                    className="font-medium text-sm transition-colors duration-200 hover:underline"
+                    style={{ color: "var(--primary)" }}
+                    onMouseEnter={(e) =>
+                      ((e.target as HTMLElement).style.color =
+                        "var(--primary-dark)")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.target as HTMLElement).style.color = "var(--primary)")
+                    }
+                  >
+                    0956-6873-781
+                  </a>
+                  <button
+                    onClick={() => copyToClipboard("0956-6873-781", "phone")}
+                    className="px-3 py-1 text-xs bg-primary/10 hover:bg-primary/20 text-primary rounded-md transition-colors duration-200"
+                    aria-label="Copy phone number to clipboard"
+                  >
+                    {copiedPhone ? "✓ Copied!" : "Copy"}
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>

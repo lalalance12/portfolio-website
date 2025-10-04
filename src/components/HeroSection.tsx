@@ -5,9 +5,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import RotatingText from "./RotatingText";
 import FadeContent from "../animations/FadeContent/FadeContent";
 import AnimatedContent from "../animations/AnimatedContent/AnimatedContent";
-import DecryptedText from "../textanimations/DecryptedText/DecryptedText";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 
 export default function HeroSection() {
+  const scrollToSection = useScrollToSection();
   // Parallax scroll effects
   const { scrollYProgress } = useScroll();
   const imageY = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -39,7 +40,7 @@ export default function HeroSection() {
             scale={0.9}
           >
             <motion.div
-              className="flex justify-center lg:justify-start order-1 lg:order-2"
+              className="flex justify-center lg:justify-start order-1 lg:order-2 lg:pl-12"
               style={{ y: imageY }}
             >
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 group">
@@ -89,7 +90,7 @@ export default function HeroSection() {
 
           {/* Text Content with Enhanced Animations */}
           <motion.div
-            className="order-2 lg:order-1 space-y-4 sm:space-y-6 md:space-y-8 flex flex-col items-center lg:items-start"
+            className="order-2 lg:order-1 space-y-2 sm:space-y-3 md:space-y-4 flex flex-col items-center lg:items-start"
             style={{ y: textY }}
           >
             <AnimatedContent
@@ -99,59 +100,25 @@ export default function HeroSection() {
               duration={1}
               delay={0.3}
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">
-                <div className="mb-4 text-neutral text-center lg:text-left">
-                  Hi! I am{" "}
-                  <DecryptedText
-                    text="Xerxes"
-                    speed={30}
-                    maxIterations={15}
-                    sequential={true}
-                    revealDirection="center"
-                    animateOn="view"
-                    className="text-primary font-bold"
-                    encryptedClassName="text-slate-400"
-                  />
-                  , a
-                </div>
-                <div className="w-[10em] flex items-center justify-center lg:justify-start relative mx-auto lg:mx-0">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 text-center lg:text-left">
+                <span className="block mb-1 text-neutral">
+                  Software Engineer
+                </span>
+                <span className="block w-[10em] mx-auto lg:mx-0 relative">
                   <RotatingText />
-                  {/* Floating accent elements */}
-                  <motion.div
-                    className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full"
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                  <motion.div
-                    className="absolute -bottom-1 sm:-bottom-2 -left-3 sm:-left-6 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full"
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.5, 0.8, 0.5],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5,
-                    }}
-                  />
-                </div>
+                </span>
               </h1>
+              <p className="text-lg sm:text-xl font-medium text-slate-700 text-center lg:text-left mb-3">
+                Xerxes Lance Laurenz Lompon
+              </p>
             </AnimatedContent>
 
             <FadeContent blur={false} duration={800} delay={600}>
-              <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-6 sm:mb-8 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
-                I specialize in building scalable, efficient, and user-centric
-                systems. With hands-on experience across the full stack,
-                I&apos;ve delivered real-world projects using technologies like
-                React, Next.js, Laravel, Supabase, PostgreSQL, and AWS.
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-6 sm:mb-6 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
+                Building production systems that serve real users. Recently
+                developed an AWS-hosted publication platform and a MVP for a
+                healthcare workflow system using React, Next.js, Laravel, AWS,
+                Tailwind, and Supabase.
               </p>
             </FadeContent>
 
@@ -168,15 +135,7 @@ export default function HeroSection() {
                   aria-label="View my projects and work"
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById("projects");
-                    if (element) {
-                      // Scroll to exact position at the top of the section
-                      const elementTop = element.offsetTop;
-                      window.scrollTo({
-                        top: elementTop,
-                        behavior: "smooth",
-                      });
-                    }
+                    scrollToSection("projects");
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -185,27 +144,11 @@ export default function HeroSection() {
                 </motion.a>
                 <motion.a
                   href="#contact"
-                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 border-2 bg-primary text-primary hover:bg-primary hover:text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2"
+                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2"
                   aria-label="Get in touch with me"
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById("contact");
-                    if (element) {
-                      // Calculate position accounting for sticky header
-                      const elementTop = element.offsetTop;
-                      const header = document.querySelector("header");
-                      const headerHeight = header ? header.offsetHeight : 100;
-                      const scrollPosition = elementTop - headerHeight - 20;
-
-                      // Ensure we don't scroll above the top of the page
-                      const finalPosition = Math.max(0, scrollPosition);
-
-                      // Scroll to the section with smooth behavior
-                      window.scrollTo({
-                        top: finalPosition,
-                        behavior: "smooth",
-                      });
-                    }
+                    scrollToSection("contact");
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

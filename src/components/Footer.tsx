@@ -1,6 +1,9 @@
 "use client";
 
+import { useScrollToSection } from "@/hooks/useScrollToSection";
+
 export default function Footer() {
+  const scrollToSection = useScrollToSection();
   return (
     <footer className="w-full py-16 px-8 bg-neutral text-secondary border-t border-primary/30 relative overflow-hidden">
       {/* Circular orange gradient backgrounds */}
@@ -108,9 +111,10 @@ export default function Footer() {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    scrollToSection("home");
                   }}
                   className="hover:text-primary transition-colors cursor-pointer"
+                  aria-label="Navigate to home section"
                 >
                   Home
                 </button>
@@ -119,19 +123,10 @@ export default function Footer() {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById("about");
-                    if (element) {
-                      const elementTop = element.offsetTop;
-                      const headerHeight = 100;
-                      const scrollPosition = elementTop - headerHeight;
-                      const finalPosition = Math.max(0, scrollPosition);
-                      window.scrollTo({
-                        top: finalPosition,
-                        behavior: "smooth",
-                      });
-                    }
+                    scrollToSection("about");
                   }}
                   className="hover:text-primary transition-colors cursor-pointer"
+                  aria-label="Navigate to about section"
                 >
                   About
                 </button>
@@ -140,19 +135,10 @@ export default function Footer() {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById("skills");
-                    if (element) {
-                      const elementTop = element.offsetTop;
-                      const headerHeight = 100;
-                      const scrollPosition = elementTop - headerHeight;
-                      const finalPosition = Math.max(0, scrollPosition);
-                      window.scrollTo({
-                        top: finalPosition,
-                        behavior: "smooth",
-                      });
-                    }
+                    scrollToSection("skills");
                   }}
                   className="hover:text-primary transition-colors cursor-pointer"
+                  aria-label="Navigate to skills section"
                 >
                   Skills
                 </button>
@@ -161,19 +147,10 @@ export default function Footer() {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById("projects");
-                    if (element) {
-                      const elementTop = element.offsetTop;
-                      const headerHeight = 100;
-                      const scrollPosition = elementTop - headerHeight;
-                      const finalPosition = Math.max(0, scrollPosition);
-                      window.scrollTo({
-                        top: finalPosition,
-                        behavior: "smooth",
-                      });
-                    }
+                    scrollToSection("projects");
                   }}
                   className="hover:text-primary transition-colors cursor-pointer"
+                  aria-label="Navigate to projects section"
                 >
                   Projects
                 </button>
@@ -182,19 +159,10 @@ export default function Footer() {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.getElementById("contact");
-                    if (element) {
-                      const elementTop = element.offsetTop;
-                      const headerHeight = 100;
-                      const scrollPosition = elementTop - headerHeight;
-                      const finalPosition = Math.max(0, scrollPosition);
-                      window.scrollTo({
-                        top: finalPosition,
-                        behavior: "smooth",
-                      });
-                    }
+                    scrollToSection("contact");
                   }}
                   className="hover:text-primary transition-colors cursor-pointer"
+                  aria-label="Navigate to contact section"
                 >
                   Contact
                 </button>

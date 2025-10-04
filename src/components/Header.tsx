@@ -3,10 +3,13 @@ import Link from "next/link";
 import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialDropdown from "./SocialDropdown";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
+import { throttle } from "@/utils/throttle";
 
 type Section = "home" | "about" | "skills" | "projects" | "contact";
 
 export default function Header() {
+  const scrollToSection = useScrollToSection();
   const [activeSection, setActiveSection] = useState<Section>("home");
   const [targetSection, setTargetSection] = useState<Section>("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -47,114 +50,95 @@ export default function Header() {
     []
   );
 
-  const scrollToSection = (sectionId: Section) => {
+  const handleScrollToSection = (sectionId: Section) => {
     // Set active section immediately for visual feedback
     setActiveSection(sectionId);
     setTargetSection(sectionId);
     setUserNavigatedSection(sectionId);
     setIsMobileMenuOpen(false); // Close mobile menu when navigating
 
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // Get accurate header height
-      const header = document.querySelector("header");
-      const headerHeight = header ? header.offsetHeight : 100;
+    scrollToSection(sectionId);
 
-      // Calculate position accounting for sticky header
-      const elementTop = element.offsetTop;
-      const scrollPosition = elementTop - headerHeight - 20; // Extra padding for better positioning
-
-      // Ensure we don't scroll above the top of the page
-      const finalPosition = Math.max(0, scrollPosition);
-
-      // Scroll to the section with smooth behavior
-      window.scrollTo({
-        top: finalPosition,
-        behavior: "smooth",
-      });
-
-      // Clear user navigation state after scroll completes
-      setTimeout(() => {
-        setUserNavigatedSection(null);
-      }, 1200); // Optimized timeout
-    }
+    // Clear user navigation state after scroll completes
+    setTimeout(() => {
+      setUserNavigatedSection(null);
+    }, 1200);
   };
 
-  // Scroll detection function
-  const handleScroll = () => {
-    // Don't override user navigation - keep the clicked button highlighted
-    if (userNavigatedSection !== null) {
-      // Only update if we've actually reached the target section
-      const element = document.getElementById(userNavigatedSection);
-      if (element) {
+  // Throttled scroll detection function
+  const handleScroll = useMemo(
+    () =>
+      throttle(() => {
+        // Don't override user navigation - keep the clicked button highlighted
+        if (userNavigatedSection !== null) {
+          // Only update if we've actually reached the target section
+          const element = document.getElementById(userNavigatedSection);
+          if (element) {
+            const scrollPosition = window.scrollY;
+            const elementTop = element.offsetTop;
+            const elementHeight = element.offsetHeight;
+
+            // Check if we're within the target section
+            const threshold = 100;
+
+            if (
+              scrollPosition >= elementTop - threshold &&
+              scrollPosition < elementTop + elementHeight - threshold
+            ) {
+              setUserNavigatedSection(null);
+            }
+          }
+          return;
+        }
+
+        // Reset to home when at the very top
+        if (window.scrollY < 50) {
+          if (targetSection !== "home") setTargetSection("home");
+          return;
+        }
+
+        const sections: Section[] = [
+          "home",
+          "about",
+          "skills",
+          "projects",
+          "contact",
+        ];
+
         const scrollPosition = window.scrollY;
-        const elementTop = element.offsetTop;
-        const elementHeight = element.offsetHeight;
+        const windowHeight = window.innerHeight;
 
-        // Check if we're within the target section (at the very beginning)
-        // Use a small threshold to account for smooth scrolling precision
-        const threshold = 100; // pixels from the top of the section
+        let newSection: Section | null = null;
 
-        if (
-          scrollPosition >= elementTop - threshold &&
-          scrollPosition < elementTop + elementHeight - threshold
-        ) {
-          setUserNavigatedSection(null); // Allow normal scroll detection now
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const elementTop = element.offsetTop;
+            const elementHeight = element.offsetHeight;
+
+            if (
+              scrollPosition >= elementTop - 80 &&
+              (scrollPosition < elementTop + elementHeight - 80 ||
+                (sectionId === "contact" &&
+                  scrollPosition + windowHeight >=
+                    elementTop + elementHeight - 150))
+            ) {
+              newSection = sectionId;
+              break;
+            }
+          }
         }
-      }
-      return;
-    }
 
-    // Reset to home when at the very top
-    if (window.scrollY < 50) {
-      if (targetSection !== "home") setTargetSection("home");
-      return;
-    }
-
-    const sections: Section[] = [
-      "home",
-      "about",
-      "skills",
-      "projects",
-      "contact",
-    ];
-
-    // Use exact scroll position without offset for precise detection
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-
-    let newSection: Section | null = null;
-
-    for (const sectionId of sections) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const elementTop = element.offsetTop;
-        const elementHeight = element.offsetHeight;
-
-        // Check if the current scroll position is within this section
-        // The section is considered active if:
-        // 1. The scroll position is at or past the section start
-        // 2. The scroll position is before the section end
-        // 3. Or if we're near the end of the page and this is the last section
-        if (
-          scrollPosition >= elementTop - 80 && // Consistent threshold for precision
-          (scrollPosition < elementTop + elementHeight - 80 ||
-            (sectionId === "contact" &&
-              scrollPosition + windowHeight >=
-                elementTop + elementHeight - 150))
-        ) {
-          newSection = sectionId;
-          break;
-        }
-      }
-    }
-
-    if (newSection !== targetSection) setTargetSection(newSection);
-  };
+        if (newSection && newSection !== targetSection)
+          setTargetSection(newSection);
+      }, 100),
+    [targetSection, userNavigatedSection]
+  );
 
   // Initialize scroll detection on mount
   useEffect(() => {
     handleScroll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Set up scroll listener
@@ -162,6 +146,7 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetSection, userNavigatedSection]);
 
   useEffect(() => {
@@ -211,7 +196,7 @@ export default function Header() {
         <div className="text-lg md:text-xl font-medium flex items-center">
           <Link
             href="/"
-            onClick={() => scrollToSection("home")}
+            onClick={() => handleScrollToSection("home")}
             className="flex items-center gap-2"
           >
             <div className="flex items-center"></div>
@@ -232,36 +217,46 @@ export default function Header() {
             />
             <button
               ref={homeRef}
-              onClick={() => scrollToSection("home")}
+              onClick={() => handleScrollToSection("home")}
               className={getNavItemClass("home")}
+              aria-label="Navigate to home section"
+              aria-current={activeSection === "home" ? "page" : undefined}
             >
               <span className="relative z-10">Home</span>
             </button>
             <button
               ref={aboutRef}
-              onClick={() => scrollToSection("about")}
+              onClick={() => handleScrollToSection("about")}
               className={getNavItemClass("about")}
+              aria-label="Navigate to about section"
+              aria-current={activeSection === "about" ? "page" : undefined}
             >
               <span className="relative z-10">About</span>
             </button>
             <button
               ref={skillsRef}
-              onClick={() => scrollToSection("skills")}
+              onClick={() => handleScrollToSection("skills")}
               className={getNavItemClass("skills")}
+              aria-label="Navigate to skills section"
+              aria-current={activeSection === "skills" ? "page" : undefined}
             >
               <span className="relative z-10">Skills</span>
             </button>
             <button
               ref={projectsRef}
-              onClick={() => scrollToSection("projects")}
+              onClick={() => handleScrollToSection("projects")}
               className={getNavItemClass("projects")}
+              aria-label="Navigate to projects section"
+              aria-current={activeSection === "projects" ? "page" : undefined}
             >
               <span className="relative z-10">Projects</span>
             </button>
             <button
               ref={contactRef}
-              onClick={() => scrollToSection("contact")}
+              onClick={() => handleScrollToSection("contact")}
               className={getNavItemClass("contact")}
+              aria-label="Navigate to contact section"
+              aria-current={activeSection === "contact" ? "page" : undefined}
             >
               <span className="relative z-10">Contact</span>
             </button>
@@ -299,8 +294,30 @@ export default function Header() {
           />
         </button>
 
-        {/* Desktop Social Dropdown */}
-        <div className="hidden md:block">
+        {/* Desktop Resume & Social */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="/Xerxes_Lompon_SoftwareEngineer.pdf"
+            download="Xerxes_Lompon_Resume.pdf"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary rounded-full text-sm font-medium transition-all duration-200 hover:scale-105"
+            style={{ color: "#FFFFFF" }}
+            aria-label="Download resume"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            Resume
+          </a>
           <SocialDropdown />
         </div>
       </header>
@@ -325,17 +342,41 @@ export default function Header() {
               ].map(({ id, label }) => (
                 <button
                   key={id}
-                  onClick={() => scrollToSection(id as Section)}
+                  onClick={() => handleScrollToSection(id as Section)}
                   className={`text-left py-2 px-3 rounded-lg transition-all duration-200 ${
                     activeSection === id
                       ? "bg-primary/10 text-primary font-medium"
                       : "text-neutral hover:bg-neutral/10"
                   }`}
+                  aria-label={`Navigate to ${label.toLowerCase()} section`}
+                  aria-current={activeSection === id ? "page" : undefined}
                 >
                   {label}
                 </button>
               ))}
-              <div className="pt-4 border-t border-border">
+              <div className="pt-4 border-t border-border space-y-4">
+                <a
+                  href="/Xerxes_Lompon_SoftwareEngineer.pdf"
+                  download="Xerxes_Lompon_SoftwareEngineer.pdf"
+                  className="flex items-center justify-center gap-2 py-3 px-4 bg-primary rounded-lg font-medium transition-all duration-200"
+                  style={{ color: "#FFFFFF" }}
+                  aria-label="Download resume"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  Download Resume
+                </a>
                 <SocialDropdown />
               </div>
             </nav>
