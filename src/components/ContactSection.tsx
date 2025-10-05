@@ -253,7 +253,7 @@ export default function ContactSection() {
                 style={{
                   backgroundColor: "var(--secondary)",
                   borderColor: "var(--border)",
-                  boxShadow: "0 0 0 1px var(--border)",
+                  boxShadow: "var(--shadow-primary, 0 0 0 1px var(--border))",
                 }}
               >
                 <div
@@ -289,7 +289,15 @@ export default function ContactSection() {
                     href="https://linkedin.com/in/xerxes-lompon"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-sm text-primary hover:text-primary-dark transition-colors duration-200 hover:underline"
+                    className="font-medium text-sm transition-colors duration-200 hover:underline"
+                    style={{ color: "var(--primary)" }}
+                    onMouseEnter={(e) =>
+                      ((e.target as HTMLElement).style.color =
+                        "var(--primary-dark)")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.target as HTMLElement).style.color = "var(--primary)")
+                    }
                   >
                     linkedin.com/in/xerxes-lompon
                   </a>
@@ -297,7 +305,8 @@ export default function ContactSection() {
                     href="https://linkedin.com/in/xerxes-lompon"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-1 text-xs bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary-dark rounded-md transition-colors duration-200 inline-block"
+                    className="px-3 py-1 text-xs bg-primary/10 hover:bg-primary/20 rounded-md transition-colors duration-200 inline-block"
+                    style={{ color: "var(--primary)" }}
                     aria-label="Visit LinkedIn profile"
                   >
                     Visit Profile
@@ -332,7 +341,7 @@ export default function ContactSection() {
                 style={{
                   backgroundColor: "var(--secondary)",
                   borderColor: "var(--border)",
-                  boxShadow: "0 0 0 1px var(--border)",
+                  boxShadow: "var(--shadow-primary, 0 0 0 1px var(--border))",
                 }}
               >
                 <div

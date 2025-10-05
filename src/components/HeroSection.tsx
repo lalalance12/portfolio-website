@@ -40,7 +40,7 @@ export default function HeroSection() {
             scale={0.9}
           >
             <motion.div
-              className="flex justify-center lg:justify-start order-1 lg:order-2 lg:pl-12"
+              className="flex justify-center lg:justify-end order-1 lg:order-2 lg:pr-32"
               style={{ y: imageY }}
             >
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 group">
@@ -144,7 +144,7 @@ export default function HeroSection() {
                 </motion.a>
                 <motion.a
                   href="#contact"
-                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2"
+                  className="w-full sm:w-auto inline-block px-6 sm:px-8 py-4 sm:py-3 bg-primary hover:bg-primary-dark text-secondary transition-all duration-300 font-medium rounded-lg text-center hover:scale-105 text-sm sm:text-base min-h-[48px] sm:min-h-[44px] focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2"
                   aria-label="Get in touch with me"
                   onClick={(e) => {
                     e.preventDefault();
