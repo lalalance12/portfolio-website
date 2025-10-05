@@ -1,14 +1,26 @@
 "use client";
 import { useState } from "react";
 
-export default function SocialDropdown() {
+interface SocialDropdownProps {
+  isMobile?: boolean;
+}
+
+export default function SocialDropdown({
+  isMobile = false,
+}: SocialDropdownProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const buttonClasses = isMobile
+    ? "text-sm font-medium flex items-center justify-center gap-2 rounded-lg transition-all duration-200 w-full px-4 py-3 border-2 border-neutral text-neutral bg-transparent hover:bg-neutral/5"
+    : "text-sm font-medium inline-flex items-center justify-center gap-2 rounded-full transition-all duration-200 w-10 h-10 p-0 border-2 border-neutral text-neutral bg-transparent hover:bg-neutral/5 xl:w-auto xl:h-auto xl:px-4 xl:py-2 xl:rounded-lg xl:border-0 xl:text-neutral/80 xl:hover:text-neutral xl:hover:bg-neutral/5";
 
   return (
     <div className="relative">
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="text-sm text-neutral/80 hover:text-neutral transition-colors font-medium flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-neutral/5"
+        className={buttonClasses}
+        title="Connect with me"
+        aria-label="Connect with me"
       >
         <svg
           width="16"
@@ -19,16 +31,22 @@ export default function SocialDropdown() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-4 h-4"
+          className={
+            isMobile
+              ? "w-4 h-4 flex-shrink-0"
+              : "w-5 h-5 xl:w-4 xl:h-4 flex-shrink-0"
+          }
         >
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
           <polyline points="22,6 12,13 2,6" />
         </svg>
-        Connect with me
+        <span className={isMobile ? "inline" : "hidden xl:inline"}>
+          Connect with me
+        </span>
         <svg
           className={`w-3 h-3 transition-transform ${
-            isDropdownOpen ? "rotate-180" : ""
-          }`}
+            isMobile ? "block" : "hidden xl:block"
+          } ${isDropdownOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -43,7 +61,11 @@ export default function SocialDropdown() {
       </button>
 
       {isDropdownOpen && (
-        <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-border rounded-lg shadow-lg py-2 z-50">
+        <div
+          className={`absolute top-full mt-2 w-48 bg-white border border-border rounded-lg shadow-lg py-2 z-50 ${
+            isMobile ? "left-1/2 -translate-x-1/2" : "right-0"
+          }`}
+        >
           <a
             href="mailto:lompon.xerxeslancelaurenz@gmail.com"
             title="Send email to Xerxes Lompon"
