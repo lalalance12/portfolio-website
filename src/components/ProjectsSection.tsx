@@ -265,6 +265,60 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl:
         "https://github.com/lalalance12/monte-carlo-simulation-of-item-probability-in-counter-strike-2",
+      images: [
+        {
+          src: "/projects/monte-carlo-simulation/5000-50percent.jpg",
+          title: "Simulation Result - ₱5,000 Starting Capital, 50% Profit Goal",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/10000-50percent.png",
+          title:
+            "Simulation Result - ₱10,000 Starting Capital, 50% Profit Goal",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/15000-50percent.png",
+          title:
+            "Simulation Result - ₱15,000 Starting Capital, 50% Profit Goal",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/15000-30percent.png",
+          title:
+            "Simulation Result - ₱15,000 Starting Capital, 30% Profit Goal",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/15000-10percent.png",
+          title:
+            "Simulation Result - ₱15,000 Starting Capital, 10% Profit Goal",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/rarity-tier-odds-table.png",
+          title: "Rarity Tier Odds - Probability Distribution Table",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/wear-level-odds-table.png",
+          title: "Wear Level Odds - Condition Probability Distribution",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/pricing-list.jpg",
+          title: "Item Pricing Data - CS2 Market Values",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/setting-up-prob.jpg",
+          title: "Code Implementation - Probability Setup",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/function-open-loot-box.jpg",
+          title: "Code Implementation - Loot Box Opening Algorithm",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/main-sim.jpg",
+          title: "Code Implementation - Main Simulation Loop",
+        },
+        {
+          src: "/projects/monte-carlo-simulation/plotting-of-graph.jpg",
+          title: "Code Implementation - Data Visualization",
+        },
+      ],
       features: [
         "Monte Carlo probability modeling",
         "Multi-factor item simulation",
