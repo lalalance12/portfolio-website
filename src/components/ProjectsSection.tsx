@@ -13,7 +13,69 @@ export default function ProjectsSection() {
   const { setSelectedProject } = useModal();
 
   const projects = [
-    // Professional projects first (sorted by latest date)
+    // 1. Silahis Publication - Featured professional project
+    {
+      id: "silahis-publication",
+      title: "Silahis Student Publication Platform",
+      description:
+        "A cloud-native publication platform built with modern web technologies for student journalism and content management.",
+      fullDescription:
+        "A modern, cloud-native publication platform developed using AWS services including EC2, S3, and Route 53. Features custom CMS built with React and Laravel, automated content publishing, and mobile-responsive design. Successfully deployed and managing the Silahis Student Publication website.",
+      category: "professional",
+      technologies: ["React", "Laravel", "AWS", "EC2", "S3", "Route 53"],
+      type: "Web Platform",
+      date: "Sep 2024 – Jul 2025",
+      isPublic: false,
+      liveUrl: "https://thesilahispublication.com",
+      images: [
+        {
+          src: "/projects/silahis-publication/publication-homepage.png",
+          title: "Homepage - Main Landing Page",
+        },
+        {
+          src: "/projects/silahis-publication/publication-header.png",
+          title: "Navigation Header - Site Navigation",
+        },
+        {
+          src: "/projects/silahis-publication/publication-articles-page.png",
+          title: "Articles Page - Content Listing",
+        },
+        {
+          src: "/projects/silahis-publication/publication-article-page.png",
+          title: "Article View - Individual Article Display",
+        },
+        {
+          src: "/projects/silahis-publication/publication-palakasan-articles.png",
+          title: "Palakasan Coverage - Special Event Articles",
+        },
+        {
+          src: "/projects/silahis-publication/publication-palakasan-medal-count.png",
+          title: "Palakasan Medal Count - Live Event Tracker",
+        },
+        {
+          src: "/projects/silahis-publication/publication-loading-page-palakasan.png",
+          title: "Loading Page - User Experience",
+        },
+        {
+          src: "/projects/silahis-publication/publication-login-publishers.png",
+          title: "Publisher Login - Content Management Access",
+        },
+      ],
+      features: [
+        "Cloud-native architecture",
+        "Custom CMS with React & Laravel",
+        "Automated article publishing",
+        "Mobile-responsive design",
+        "AWS infrastructure management",
+      ],
+      achievements: [
+        "50% reduction in manual maintenance",
+        "100% real-time article accessibility",
+        "Successful cloud deployment",
+        "Mobile-optimized user experience",
+      ],
+    },
+    // 2. ChartLink
     {
       id: "chartlink",
       title: "ChartLink Clinic Workflow System",
@@ -127,60 +189,7 @@ export default function ProjectsSection() {
         "Successful client project completion",
       ],
     },
-    {
-      id: "clinical-management",
-      title: "Clinical Management System",
-      description:
-        "A management system designed for small and medium-sized clinics that aims to streamline the workflow of receptionists, medical technologists, and doctors.",
-      fullDescription:
-        "A comprehensive management system designed specifically for small and medium-sized clinics. The system streamlines workflows for receptionists, medical technologists, and doctors, improving operational efficiency and patient care delivery.",
-      category: "professional",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Healthcare"],
-      type: "Web Application",
-      date: "Jan 24, 2024",
-      isPublic: true,
-      githubUrl: "https://github.com/lalalance12/clinical-management-system",
-      features: [
-        "Multi-role user management",
-        "Patient record management",
-        "Appointment scheduling",
-        "Workflow optimization",
-        "Real-time notifications",
-      ],
-      achievements: [
-        "Streamlined clinic operations",
-        "Improved patient care workflow",
-        "Multi-user role support",
-      ],
-    },
-    {
-      id: "silahis-publication",
-      title: "Silahis Student Publication Platform",
-      description:
-        "A cloud-native publication platform built with modern web technologies for student journalism and content management.",
-      fullDescription:
-        "A modern, cloud-native publication platform developed using AWS services including EC2, S3, and Route 53. Features custom CMS built with React and Laravel, automated content publishing, and mobile-responsive design. Successfully deployed and managing the Silahis Student Publication website.",
-      category: "professional",
-      technologies: ["React", "Laravel", "AWS", "EC2", "S3", "Route 53"],
-      type: "Web Platform",
-      date: "Sep 2024 – Jul 2025",
-      isPublic: false,
-      liveUrl: "https://thesilahispublication.com",
-      features: [
-        "Cloud-native architecture",
-        "Custom CMS with React & Laravel",
-        "Automated article publishing",
-        "Mobile-responsive design",
-        "AWS infrastructure management",
-      ],
-      achievements: [
-        "50% reduction in manual maintenance",
-        "100% real-time article accessibility",
-        "Successful cloud deployment",
-        "Mobile-optimized user experience",
-      ],
-    },
-    // Featured academic project
+    // 3. Guideon - Featured academic project
     {
       id: "guideon-chatbot",
       title: "Guideon – AI-Powered Learning Pathway Recommender",
@@ -217,7 +226,34 @@ export default function ProjectsSection() {
         "Research-grade AI application",
       ],
     },
-    // Academic projects (sorted by latest date)
+    // 4. Clinical Management
+    {
+      id: "clinical-management",
+      title: "Clinical Management System",
+      description:
+        "A management system designed for small and medium-sized clinics that aims to streamline the workflow of receptionists, medical technologists, and doctors.",
+      fullDescription:
+        "A comprehensive management system designed specifically for small and medium-sized clinics. The system streamlines workflows for receptionists, medical technologists, and doctors, improving operational efficiency and patient care delivery.",
+      category: "professional",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Healthcare"],
+      type: "Web Application",
+      date: "Jan 24, 2024",
+      isPublic: true,
+      githubUrl: "https://github.com/lalalance12/clinical-management-system",
+      features: [
+        "Multi-role user management",
+        "Patient record management",
+        "Appointment scheduling",
+        "Workflow optimization",
+        "Real-time notifications",
+      ],
+      achievements: [
+        "Streamlined clinic operations",
+        "Improved patient care workflow",
+        "Multi-user role support",
+      ],
+    },
+    // 5. CNN Flower Classification
     {
       id: "flower-classification",
       title: "CNN-based Multi-Class Flower Classification",
@@ -251,6 +287,59 @@ export default function ProjectsSection() {
         "Comprehensive dataset handling",
       ],
     },
+    // 6. Heart Disease Prediction
+    {
+      id: "heart-disease-prediction",
+      title: "Heart Disease Prediction Model",
+      description:
+        "A machine learning project designed to predict heart disease risk using the Random Forest classification algorithm.",
+      fullDescription:
+        "A comprehensive machine learning project that utilizes the Random Forest classification algorithm to predict heart disease risk. This model analyzes various health parameters to provide accurate risk assessments and supports medical decision-making processes.",
+      category: "academic",
+      technologies: [
+        "Python",
+        "Scikit-learn",
+        "Random Forest",
+        "Pandas",
+        "NumPy",
+      ],
+      type: "Machine Learning",
+      date: "Nov 27, 2024",
+      isPublic: true,
+      githubUrl:
+        "https://github.com/lalalance12/heart-disease-prediction-model-using-random-forest",
+      images: [
+        {
+          src: "/projects/heart-disease-prediction/confusion-matrix.png",
+          title: "Confusion Matrix - Model Performance Metrics",
+        },
+        {
+          src: "/projects/heart-disease-prediction/feature-importance.png",
+          title: "Feature Importance - Key Factors in Prediction",
+        },
+        {
+          src: "/projects/heart-disease-prediction/cross-validation-score.png",
+          title: "Cross-Validation Score - Model Validation",
+        },
+        {
+          src: "/projects/heart-disease-prediction/classification-report.png",
+          title: "Classification Report - Detailed Performance Metrics",
+        },
+      ],
+      features: [
+        "Random Forest classification",
+        "Feature importance analysis",
+        "Risk prediction scoring",
+        "Data visualization",
+        "Model performance metrics",
+      ],
+      achievements: [
+        "High prediction accuracy",
+        "Feature importance insights",
+        "Medical decision support",
+      ],
+    },
+    // 7. Monte Carlo Simulation
     {
       id: "monte-carlo-simulation",
       title: "Counter-Strike 2 Item Probability Simulation",
@@ -332,57 +421,7 @@ export default function ProjectsSection() {
         "Statistical analysis framework",
       ],
     },
-    {
-      id: "heart-disease-prediction",
-      title: "Heart Disease Prediction Model",
-      description:
-        "A machine learning project designed to predict heart disease risk using the Random Forest classification algorithm.",
-      fullDescription:
-        "A comprehensive machine learning project that utilizes the Random Forest classification algorithm to predict heart disease risk. This model analyzes various health parameters to provide accurate risk assessments and supports medical decision-making processes.",
-      category: "academic",
-      technologies: [
-        "Python",
-        "Scikit-learn",
-        "Random Forest",
-        "Pandas",
-        "NumPy",
-      ],
-      type: "Machine Learning",
-      date: "Nov 27, 2024",
-      isPublic: true,
-      githubUrl:
-        "https://github.com/lalalance12/heart-disease-prediction-model-using-random-forest",
-      images: [
-        {
-          src: "/projects/heart-disease-prediction/confusion-matrix.png",
-          title: "Confusion Matrix - Model Performance Metrics",
-        },
-        {
-          src: "/projects/heart-disease-prediction/feature-importance.png",
-          title: "Feature Importance - Key Factors in Prediction",
-        },
-        {
-          src: "/projects/heart-disease-prediction/cross-validation-score.png",
-          title: "Cross-Validation Score - Model Validation",
-        },
-        {
-          src: "/projects/heart-disease-prediction/classification-report.png",
-          title: "Classification Report - Detailed Performance Metrics",
-        },
-      ],
-      features: [
-        "Random Forest classification",
-        "Feature importance analysis",
-        "Risk prediction scoring",
-        "Data visualization",
-        "Model performance metrics",
-      ],
-      achievements: [
-        "High prediction accuracy",
-        "Feature importance insights",
-        "Medical decision support",
-      ],
-    },
+    // 8. Binary Classification
     {
       id: "binary-classification",
       title: "Binary Classification Collection",
@@ -409,6 +448,7 @@ export default function ProjectsSection() {
         "Practical implementation examples",
       ],
     },
+    // 9. Multiplexing Videos
     {
       id: "multiplexing-videos",
       title: "Real-time Video Processing System",
