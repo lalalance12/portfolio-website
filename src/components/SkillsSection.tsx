@@ -475,12 +475,12 @@ export default function SkillsSection() {
       <div className="mt-12 h-[120px] relative overflow-hidden">
         <LogoLoop
           logos={techLogos}
-          speed={80}
+          speed={60}
           direction="right"
           logoHeight={64}
           gap={40}
-          pauseOnHover
-          scaleOnHover
+          pauseOnHover={false}
+          scaleOnHover={false}
           fadeOut
           fadeOutColor="#ffffff"
           ariaLabel="Technology partners"
@@ -489,12 +489,12 @@ export default function SkillsSection() {
       <div className="mt-0 h-[100px] relative overflow-hidden">
         <LogoLoop
           logos={techLogos}
-          speed={80}
+          speed={60}
           direction="left"
           logoHeight={64}
           gap={40}
-          pauseOnHover
-          scaleOnHover
+          pauseOnHover={false}
+          scaleOnHover={false}
           fadeOut
           fadeOutColor="#ffffff"
           ariaLabel="Technology partners"

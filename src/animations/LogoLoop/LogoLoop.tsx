@@ -79,6 +79,7 @@ const useResizeObserver = (
     return () => {
       observers.forEach((observer) => observer?.disconnect());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 };
 
@@ -119,6 +120,7 @@ const useImageLoader = (
         img.removeEventListener("error", handleImageLoad);
       });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 };
 
@@ -172,7 +174,8 @@ const useAnimationLoop = (
   targetVelocity: number,
   seqWidth: number,
   isHovered: boolean,
-  pauseOnHover: boolean
+  pauseOnHover: boolean,
+  isInView: boolean = true
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
@@ -181,7 +184,7 @@ const useAnimationLoop = (
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || !isInView) return;
 
     if (seqWidth > 0) {
       offsetRef.current =
@@ -225,7 +228,7 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, isHovered, pauseOnHover]);
+  }, [targetVelocity, seqWidth, isHovered, pauseOnHover, trackRef, isInView]);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -253,6 +256,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       ANIMATION_CONFIG.MIN_COPIES
     );
     const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [isInView, setIsInView] = useState<boolean>(true);
 
     // Tooltip state
     const [tooltipState, setTooltipState] = useState<{
@@ -315,7 +319,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       targetVelocity,
       seqWidth,
       isHovered,
-      pauseOnHover
+      pauseOnHover,
+      isInView
     );
 
     const cssVariables = useMemo(
@@ -348,6 +353,24 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     const handleMouseLeave = useCallback(() => {
       if (pauseOnHover) setIsHovered(false);
     }, [pauseOnHover]);
+
+    // Pause animation when not in viewport for better performance
+    useEffect(() => {
+      if (!containerRef.current) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            setIsInView(entry.isIntersecting);
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(containerRef.current);
+
+      return () => observer.disconnect();
+    }, []);
 
     // Tooltip handlers
     const handleLogoMouseEnter = useCallback(
@@ -417,6 +440,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
             {item.node}
           </span>
         ) : (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             className={cx(
               "h-[var(--logoloop-logoHeight)] w-auto block object-contain",
@@ -565,13 +589,15 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           {logoLists}
         </div>
 
-        {/* Tooltip */}
-        <LogoTooltip
-          visible={tooltipState.visible}
-          title={tooltipState.title}
-          position={tooltipState.position}
-          logoRect={tooltipState.logoRect}
-        />
+        {/* Tooltip - Only render if hover effects are enabled */}
+        {(pauseOnHover || scaleOnHover) && (
+          <LogoTooltip
+            visible={tooltipState.visible}
+            title={tooltipState.title}
+            position={tooltipState.position}
+            logoRect={tooltipState.logoRect}
+          />
+        )}
       </div>
     );
   }
