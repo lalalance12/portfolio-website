@@ -135,40 +135,31 @@ export default function Header() {
       "contact",
     ];
 
-    // Find which section is currently most visible
-    let currentSection: Section = "home";
-    let maxVisibility = 0;
-
-    for (const sectionId of sections) {
-      const sectionPos = sectionPositionsRef.current.get(sectionId);
-      if (sectionPos) {
-        // Calculate how much of the section is visible
-        const sectionTop = sectionPos.top;
-        const sectionBottom = sectionPos.bottom;
-        const viewportTop = scrollY;
-        const viewportBottom = scrollY + windowHeight;
-
-        // Calculate visible portion
-        const visibleTop = Math.max(sectionTop, viewportTop);
-        const visibleBottom = Math.min(sectionBottom, viewportBottom);
-        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-
-        // Prioritize sections near the top of viewport
-        const distanceFromTop = Math.abs(sectionTop - scrollY);
-        const visibility = visibleHeight - distanceFromTop * 0.3;
-
-        if (visibility > maxVisibility) {
-          maxVisibility = visibility;
-          currentSection = sectionId;
-        }
-      }
-    }
+    // Check point: 30% down from top of viewport
+    const checkPoint = scrollY + windowHeight * 0.3;
 
     // Special case: if we're near the bottom, highlight contact
     const docHeight = document.documentElement.scrollHeight;
     const scrollBottom = scrollY + windowHeight;
     if (docHeight - scrollBottom < 100) {
-      currentSection = "contact";
+      if (targetSection !== "contact") {
+        setTargetSection("contact");
+      }
+      return;
+    }
+
+    // Find which section contains the check point
+    let currentSection: Section = "home";
+
+    for (const sectionId of sections) {
+      const sectionPos = sectionPositionsRef.current.get(sectionId);
+      if (sectionPos) {
+        // Check if the checkpoint is within this section
+        if (checkPoint >= sectionPos.top && checkPoint < sectionPos.bottom) {
+          currentSection = sectionId;
+          break;
+        }
+      }
     }
 
     if (currentSection !== targetSection) {

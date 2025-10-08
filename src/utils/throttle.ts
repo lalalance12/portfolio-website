@@ -4,6 +4,7 @@
  * @param delay - Delay in milliseconds
  * @returns Throttled function
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const throttle = <T extends (...args: any[]) => void>(
   func: T,
   delay: number

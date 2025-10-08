@@ -63,6 +63,13 @@ export function ModalProvider({ children }: { children: ReactNode }) {
   const ProjectModal = ({ project }: { project: Project }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    // Reset image index when project changes (MUST be before early return)
+    useEffect(() => {
+      if (project) {
+        setCurrentImageIndex(0);
+      }
+    }, [project?.id]);
+
     if (!project) return null;
 
     const onClose = () => setSelectedProject(null);
@@ -88,11 +95,6 @@ export function ModalProvider({ children }: { children: ReactNode }) {
     const goToImage = (index: number) => {
       setCurrentImageIndex(index);
     };
-
-    // Reset image index when project changes
-    useEffect(() => {
-      setCurrentImageIndex(0);
-    }, [project.id]);
 
     return (
       <div
