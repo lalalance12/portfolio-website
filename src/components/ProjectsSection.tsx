@@ -357,7 +357,7 @@ export default function ProjectsSection() {
               className="h-full"
             >
               <div
-                className="group bg-white/95 backdrop-blur-md rounded-2xl p-6 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 h-full cursor-pointer"
+                className="group bg-white/95 backdrop-blur-md rounded-2xl p-6 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 h-full cursor-pointer flex flex-col"
                 onClick={() => setSelectedProject(project)}
               >
                 {/* Project Image/Icon Placeholder */}
@@ -431,6 +431,19 @@ export default function ProjectsSection() {
                         />
                       </svg>
                     )}
+                    {project.type === "AI/ML Application" && (
+                      <svg
+                        width="60"
+                        height="60"
+                        viewBox="0 0 24 24"
+                        className="text-slate-700 group-hover:scale-110 transition-transform duration-500"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+                        />
+                      </svg>
+                    )}
                   </div>
 
                   {/* Click to view overlay */}
@@ -462,14 +475,15 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Project Info */}
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-lg font-semibold text-slate-800 leading-tight flex-1">
+                {/* Project Info - Flex container for proper spacing */}
+                <div className="flex flex-col flex-1">
+                  {/* Header with title and badge */}
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <h3 className="text-lg font-semibold text-slate-800 leading-tight flex-1 line-clamp-2">
                       {project.title}
                     </h3>
                     <div
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      className={`px-2 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
                         project.category === "academic"
                           ? "bg-blue-100 text-blue-700"
                           : "bg-green-100 text-green-700"
@@ -481,33 +495,42 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">
+                  {/* Fixed height description - 2 lines with ellipsis */}
+                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-2 mb-3 h-[2.8rem]">
                     {project.description}
                   </p>
 
-                  <div className="flex items-center gap-2 text-xs text-slate-500">
+                  {/* Type indicator */}
+                  <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
                     <span className="w-2 h-2 bg-primary rounded-full"></span>
                     <span>{project.type}</span>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-2 py-1 bg-slate-100 text-slate-700 rounded-md text-xs font-medium border border-slate-200"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-md text-xs font-medium border border-slate-200 dark:border-slate-600">
-                        +{project.technologies.length - 3}
-                      </span>
-                    )}
-                  </div>
+                  {/* Push everything below to the bottom */}
+                  <div className="mt-auto space-y-3">
+                    {/* Technology tags - always at bottom */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies
+                        .slice(0, 3)
+                        .map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-2 py-1 bg-slate-100 text-slate-700 rounded-md text-xs font-medium border border-slate-200"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      {project.technologies.length > 3 && (
+                        <span className="px-2 py-1 bg-slate-100 text-slate-700 rounded-md text-xs font-medium border border-slate-200">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
 
-                  <div className="text-xs text-slate-500 pt-2">
-                    {project.date}
+                    {/* Date */}
+                    <div className="text-xs text-slate-500 border-t border-slate-100 pt-2">
+                      {project.date}
+                    </div>
                   </div>
                 </div>
               </div>
