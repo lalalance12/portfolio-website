@@ -1,19 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { useMemo } from "react";
 import RotatingText from "./RotatingText";
 import FadeContent from "../animations/FadeContent/FadeContent";
 import AnimatedContent from "../animations/AnimatedContent/AnimatedContent";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
+import { useScrollContext } from "@/contexts/ScrollContext";
 
 export default function HeroSection() {
   const scrollToSection = useScrollToSection();
-  // Parallax scroll effects
-  const { scrollYProgress } = useScroll();
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const { scrollProgress } = useScrollContext();
+
+  // Optimized parallax calculations with reduced movement for better performance
+  const parallaxValues = useMemo(
+    () => ({
+      imageY: scrollProgress * -50,
+      textY: scrollProgress * -25,
+      backgroundY: scrollProgress * -100,
+    }),
+    [scrollProgress]
+  );
 
   return (
     <section
@@ -23,7 +31,10 @@ export default function HeroSection() {
       {/* Background parallax layer */}
       <motion.div
         className="absolute inset-0 opacity-5"
-        style={{ y: backgroundY }}
+        style={{
+          y: parallaxValues.backgroundY,
+          willChange: "transform",
+        }}
       >
         <div className="absolute top-10 right-4 sm:top-20 sm:right-10 md:right-20 w-48 h-48 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-primary/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-16 left-4 sm:bottom-24 sm:left-10 md:bottom-32 md:left-20 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-accent/20 rounded-full blur-3xl"></div>
@@ -41,7 +52,10 @@ export default function HeroSection() {
           >
             <motion.div
               className="flex justify-center lg:justify-end order-1 lg:order-2 lg:pr-32"
-              style={{ y: imageY }}
+              style={{
+                y: parallaxValues.imageY,
+                willChange: "transform",
+              }}
             >
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 group">
                 {/* Animated background glow */}
@@ -91,7 +105,10 @@ export default function HeroSection() {
           {/* Text Content with Enhanced Animations */}
           <motion.div
             className="order-2 lg:order-1 space-y-2 sm:space-y-3 md:space-y-4 flex flex-col items-center lg:items-start"
-            style={{ y: textY }}
+            style={{
+              y: parallaxValues.textY,
+              willChange: "transform",
+            }}
           >
             <AnimatedContent
               distance={50}

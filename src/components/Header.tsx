@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialDropdown from "./SocialDropdown";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
-import { throttle } from "@/utils/throttle";
+import { useScrollContext } from "@/contexts/ScrollContext";
 
 type Section = "home" | "about" | "skills" | "projects" | "contact";
 
 export default function Header() {
   const scrollToSection = useScrollToSection();
+  const { scrollY } = useScrollContext(); // Use shared scroll context
   const [activeSection, setActiveSection] = useState<Section>("home");
   const [targetSection, setTargetSection] = useState<Section>("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -39,6 +40,11 @@ export default function Header() {
   const projectsRef = useRef<HTMLButtonElement>(null);
   const contactRef = useRef<HTMLButtonElement>(null);
 
+  // Cache section positions to avoid repeated DOM queries
+  const sectionPositionsRef = useRef<
+    Map<Section, { top: number; bottom: number }>
+  >(new Map());
+
   const refs = useMemo(
     () => ({
       home: homeRef,
@@ -65,89 +71,110 @@ export default function Header() {
     }, 1200);
   };
 
-  // Throttled scroll detection function
-  const handleScroll = useMemo(
-    () =>
-      throttle(() => {
-        // Don't override user navigation - keep the clicked button highlighted
-        if (userNavigatedSection !== null) {
-          // Only update if we've actually reached the target section
-          const element = document.getElementById(userNavigatedSection);
-          if (element) {
-            const scrollPosition = window.scrollY;
-            const elementTop = element.offsetTop;
-            const elementHeight = element.offsetHeight;
-
-            // Check if we're within the target section
-            const threshold = 100;
-
-            if (
-              scrollPosition >= elementTop - threshold &&
-              scrollPosition < elementTop + elementHeight - threshold
-            ) {
-              setUserNavigatedSection(null);
-            }
-          }
-          return;
-        }
-
-        // Reset to home when at the very top
-        if (window.scrollY < 50) {
-          if (targetSection !== "home") setTargetSection("home");
-          return;
-        }
-
-        const sections: Section[] = [
-          "home",
-          "about",
-          "skills",
-          "projects",
-          "contact",
-        ];
-
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-
-        let newSection: Section | null = null;
-
-        for (const sectionId of sections) {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            const elementTop = element.offsetTop;
-            const elementHeight = element.offsetHeight;
-
-            if (
-              scrollPosition >= elementTop - 80 &&
-              (scrollPosition < elementTop + elementHeight - 80 ||
-                (sectionId === "contact" &&
-                  scrollPosition + windowHeight >=
-                    elementTop + elementHeight - 150))
-            ) {
-              newSection = sectionId;
-              break;
-            }
-          }
-        }
-
-        if (newSection && newSection !== targetSection)
-          setTargetSection(newSection);
-      }, 100),
-    [targetSection, userNavigatedSection]
-  );
-
-  // Initialize scroll detection on mount
-  useEffect(() => {
-    handleScroll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Update section positions cache (only on resize or mount)
+  const updateSectionPositions = useCallback(() => {
+    const sections: Section[] = [
+      "home",
+      "about",
+      "skills",
+      "projects",
+      "contact",
+    ];
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        sectionPositionsRef.current.set(sectionId, {
+          top: element.offsetTop,
+          bottom: element.offsetTop + element.offsetHeight,
+        });
+      }
+    });
   }, []);
 
-  // Set up scroll listener
+  // Initialize section positions on mount and window resize
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    updateSectionPositions();
 
-    return () => window.removeEventListener("scroll", handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetSection, userNavigatedSection]);
+    const handleResize = () => {
+      updateSectionPositions();
+    };
+
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
+  }, [updateSectionPositions]);
+
+  // Optimized scroll detection using cached positions and shared scroll context
+  useEffect(() => {
+    // Don't override user navigation immediately after clicking
+    if (userNavigatedSection !== null) {
+      const sectionPos = sectionPositionsRef.current.get(userNavigatedSection);
+      if (sectionPos) {
+        const threshold = 100;
+        if (
+          scrollY >= sectionPos.top - threshold &&
+          scrollY < sectionPos.bottom - threshold
+        ) {
+          setUserNavigatedSection(null);
+        }
+      }
+      return;
+    }
+
+    // Reset to home when at the very top
+    if (scrollY < 100) {
+      if (targetSection !== "home") setTargetSection("home");
+      return;
+    }
+
+    const windowHeight = window.innerHeight;
+    const sections: Section[] = [
+      "home",
+      "about",
+      "skills",
+      "projects",
+      "contact",
+    ];
+
+    // Find which section is currently most visible
+    let currentSection: Section = "home";
+    let maxVisibility = 0;
+
+    for (const sectionId of sections) {
+      const sectionPos = sectionPositionsRef.current.get(sectionId);
+      if (sectionPos) {
+        // Calculate how much of the section is visible
+        const sectionTop = sectionPos.top;
+        const sectionBottom = sectionPos.bottom;
+        const viewportTop = scrollY;
+        const viewportBottom = scrollY + windowHeight;
+
+        // Calculate visible portion
+        const visibleTop = Math.max(sectionTop, viewportTop);
+        const visibleBottom = Math.min(sectionBottom, viewportBottom);
+        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+        // Prioritize sections near the top of viewport
+        const distanceFromTop = Math.abs(sectionTop - scrollY);
+        const visibility = visibleHeight - distanceFromTop * 0.3;
+
+        if (visibility > maxVisibility) {
+          maxVisibility = visibility;
+          currentSection = sectionId;
+        }
+      }
+    }
+
+    // Special case: if we're near the bottom, highlight contact
+    const docHeight = document.documentElement.scrollHeight;
+    const scrollBottom = scrollY + windowHeight;
+    if (docHeight - scrollBottom < 100) {
+      currentSection = "contact";
+    }
+
+    if (currentSection !== targetSection) {
+      setTargetSection(currentSection);
+    }
+  }, [scrollY, targetSection, userNavigatedSection]);
 
   useEffect(() => {
     if (targetSection === null) {

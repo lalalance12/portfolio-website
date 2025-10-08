@@ -1,16 +1,24 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { useMemo } from "react";
 import LogoLoop from "@/animations/LogoLoop/LogoLoop";
 import { Icon } from "@iconify/react";
 import FadeContent from "../animations/FadeContent/FadeContent";
 import AnimatedContent from "../animations/AnimatedContent/AnimatedContent";
+import { useScrollContext } from "../contexts/ScrollContext";
 
 export default function SkillsSection() {
-  // Parallax scroll effects
-  const { scrollYProgress } = useScroll();
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const { scrollProgress } = useScrollContext();
+
+  // Optimized parallax calculations with reduced movement
+  const parallaxValues = useMemo(
+    () => ({
+      backgroundY: scrollProgress * -100,
+      contentY: scrollProgress * -20,
+    }),
+    [scrollProgress]
+  );
   const techLogos = [
     {
       node: <Icon icon="simple-icons:react" color="#61DAFB" />,
@@ -130,7 +138,13 @@ export default function SkillsSection() {
       className="w-full px-8 py-24 bg-white relative overflow-hidden"
     >
       {/* Background parallax layers */}
-      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          y: parallaxValues.backgroundY,
+          willChange: "transform",
+        }}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary-dark/5 to-primary/10"></div>
         <div className="absolute inset-0">
           <svg
@@ -150,7 +164,13 @@ export default function SkillsSection() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <FadeContent blur={true} duration={1000} delay={200}>
-          <motion.div className="text-center mb-16" style={{ y: contentY }}>
+          <motion.div
+            className="text-center mb-16"
+            style={{
+              y: parallaxValues.contentY,
+              willChange: "transform",
+            }}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
               Skills & Technologies
             </h2>

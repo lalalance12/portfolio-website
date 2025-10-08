@@ -1,14 +1,22 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { useMemo } from "react";
 import AnimatedContent from "../animations/AnimatedContent/AnimatedContent";
 import FadeContent from "../animations/FadeContent/FadeContent";
+import { useScrollContext } from "../contexts/ScrollContext";
 
 export default function AboutSection() {
-  // Parallax scroll effects
-  const { scrollYProgress } = useScroll();
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const { scrollProgress } = useScrollContext();
+
+  // Optimized parallax calculations with reduced movement
+  const parallaxValues = useMemo(
+    () => ({
+      backgroundY: scrollProgress * -75,
+      contentY: scrollProgress * -15,
+    }),
+    [scrollProgress]
+  );
 
   return (
     <section
@@ -18,14 +26,23 @@ export default function AboutSection() {
       {/* Background parallax layer */}
       <motion.div
         className="absolute inset-0 opacity-5"
-        style={{ y: backgroundY }}
+        style={{
+          y: parallaxValues.backgroundY,
+          willChange: "transform",
+        }}
       >
         <div className="absolute top-40 left-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-40 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
       </motion.div>
       <div className="max-w-5xl mx-auto relative z-10">
         <FadeContent blur={true} duration={1000} delay={300}>
-          <motion.div className="text-center mb-16" style={{ y: contentY }}>
+          <motion.div
+            className="text-center mb-16"
+            style={{
+              y: parallaxValues.contentY,
+              willChange: "transform",
+            }}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
               About Me
             </h2>

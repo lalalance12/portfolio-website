@@ -1,18 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import FadeContent from "../animations/FadeContent/FadeContent";
 import AnimatedContent from "../animations/AnimatedContent/AnimatedContent";
+import { useScrollContext } from "../contexts/ScrollContext";
 
 export default function ContactSection() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
+  const { scrollProgress } = useScrollContext();
 
-  // Parallax scroll effects
-  const { scrollYProgress } = useScroll();
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -250]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  // Optimized parallax calculations with reduced movement
+  const parallaxValues = useMemo(
+    () => ({
+      backgroundY: scrollProgress * -125,
+      contentY: scrollProgress * -25,
+    }),
+    [scrollProgress]
+  );
 
   const copyToClipboard = async (text: string, type: "email" | "phone") => {
     try {
@@ -55,7 +61,10 @@ export default function ContactSection() {
       {/* Enhanced decorative elements with parallax */}
       <motion.div
         className="absolute inset-0 opacity-3"
-        style={{ y: backgroundY }}
+        style={{
+          y: parallaxValues.backgroundY,
+          willChange: "transform",
+        }}
       >
         <motion.div
           className="absolute top-10 right-10 w-64 h-64 border-2 rounded-full"
@@ -109,7 +118,13 @@ export default function ContactSection() {
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <FadeContent blur={true} duration={1000} delay={300}>
-          <motion.div className="pt-40 mb-2" style={{ y: contentY }}>
+          <motion.div
+            className="pt-40 mb-2"
+            style={{
+              y: parallaxValues.contentY,
+              willChange: "transform",
+            }}
+          >
             <h2
               className="text-4xl md:text-5xl font-bold mb-2"
               style={{

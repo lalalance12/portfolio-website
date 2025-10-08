@@ -3,8 +3,8 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ModalProvider } from "@/components/ModalProvider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { Providers } from "@/components/Providers";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -120,11 +120,11 @@ export default function RootLayout({
         className={`${montserrat.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
       >
         <ErrorBoundary>
-          <ModalProvider>
+          <Providers>
             <Header />
             <main className="min-h-[80vh]">{children}</main>
             <Footer />
-          </ModalProvider>
+          </Providers>
         </ErrorBoundary>
       </body>
     </html>

@@ -1,11 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import HeroSection from "../components/HeroSection";
-import AboutSection from "../components/AboutSection";
-import SkillsSection from "../components/SkillsSection";
-import ProjectsSection from "../components/ProjectsSection";
-import ContactSection from "../components/ContactSection";
+
+// Lazy load below-the-fold sections for better initial performance
+const AboutSection = dynamic(() => import("../components/AboutSection"), {
+  loading: () => <div className="w-full h-96" />,
+});
+
+const SkillsSection = dynamic(() => import("../components/SkillsSection"), {
+  loading: () => <div className="w-full h-96" />,
+});
+
+const ProjectsSection = dynamic(() => import("../components/ProjectsSection"), {
+  loading: () => <div className="w-full h-96" />,
+});
+
+const ContactSection = dynamic(() => import("../components/ContactSection"), {
+  loading: () => <div className="w-full h-96" />,
+});
 
 export default function Home() {
   return (
