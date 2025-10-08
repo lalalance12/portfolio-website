@@ -68,6 +68,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
       if (project) {
         setCurrentImageIndex(0);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [project?.id]);
 
     if (!project) return null;
@@ -155,7 +156,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
                       className="relative w-full h-full"
                     >
                       <Image
-                        src={project.images[currentImageIndex]}
+                        src={project.images![currentImageIndex]}
                         alt={`${project.title} - Image ${
                           currentImageIndex + 1
                         }`}
@@ -167,7 +168,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
                   </AnimatePresence>
 
                   {/* Navigation Arrows */}
-                  {project.images.length > 1 && (
+                  {project.images!.length > 1 && (
                     <>
                       <button
                         onClick={previousImage}
@@ -210,16 +211,16 @@ export function ModalProvider({ children }: { children: ReactNode }) {
 
                       {/* Image Counter */}
                       <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium">
-                        {currentImageIndex + 1} / {project.images.length}
+                        {currentImageIndex + 1} / {project.images!.length}
                       </div>
                     </>
                   )}
                 </div>
 
                 {/* Thumbnail Navigation */}
-                {project.images.length > 1 && (
+                {project.images!.length > 1 && (
                   <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
-                    {project.images.map((image, index) => (
+                    {project.images!.map((image, index) => (
                       <button
                         key={index}
                         onClick={() => goToImage(index)}
