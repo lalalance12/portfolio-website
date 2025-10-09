@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Providers } from "@/components/Providers";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -75,12 +76,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Plausible Analytics - Uncomment and add your domain */}
-        {/* <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script> */}
-
-        {/* Umami Analytics - Uncomment and add your tracking code */}
-        {/* <script async src="https://analytics.umami.is/script.js" data-website-id="your-website-id"></script> */}
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -119,6 +114,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
       >
+        <SpeedInsights />
         <ErrorBoundary>
           <Providers>
             <Header />
