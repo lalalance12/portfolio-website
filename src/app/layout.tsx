@@ -5,8 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Providers } from "@/components/Providers";
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -15,18 +15,18 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Xerxes Lompon | Full-Stack Developer | React, Next.js, AI/ML",
+  title: "Xerxes Lompon | Software Engineer",
   description:
     "Full-stack engineer specializing in React, Next.js, Laravel, and AI/ML. Built healthcare systems, publication platforms, and ML models. Based in Philippines.",
   keywords: [
+    "Software Engineer",
     "Full-Stack Developer",
+    "Web Developer",
     "React Developer",
     "Next.js Developer",
     "Laravel Developer",
     "AI/ML Engineer",
     "Philippines Developer",
-    "Software Engineer",
-    "Web Developer",
     "Xerxes Lompon",
   ],
   authors: [{ name: "Xerxes Lance Lompon" }],
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://xerxeslompon.com",
     siteName: "Xerxes Lompon Portfolio",
-    title: "Xerxes Lompon - Full-Stack Developer",
+    title: "Xerxes Lompon - Software Engineer/Developer",
     description:
-      "Full-stack engineer with healthcare, ML, and cloud deployment experience. Building scalable systems with React, Next.js, Laravel, and AI/ML.",
+      "Software engineer with healthcare, ML, and cloud deployment experience. Building scalable systems with React, Next.js, Laravel, and AI/ML.",
     images: [
       {
         url: "/og-image.jpg",
@@ -77,6 +77,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preload critical LCP image */}
+        <link
+          rel="preload"
+          as="image"
+          href="/photo1.jpg"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -197,7 +197,7 @@ export default function ProjectsSection() {
         "A B2B platform built on Internet Computer Protocol (ICP) that helps Philippine shrimp processors transform their supplier network into compliant, resilient farms through AI coaching, real-time monitoring, and on-chain certification.",
       fullDescription:
         "LikAI is a blockchain-powered B2B platform competing in the WCHL 2025 Global Finale. Built on the Internet Computer Protocol (ICP), it provides AI-driven coaching to Filipino shrimp farmers for GAqP compliance, real-time supply chain monitoring for processors, and automated on-chain certification via NFTs. My role focused on integrating AI using Python, LangChain, and Grok API for the chatbot and onboarding system, plus frontend development including migrating the architecture from Next.js to Vite React and implementing design improvements.",
-      category: "academic",
+      category: "professional",
       technologies: [
         "React 19",
         "Vite",
@@ -612,6 +612,8 @@ export default function ProjectsSection() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-contain"
                       priority={index < 3}
+                      loading={index < 3 ? "eager" : "lazy"}
+                      quality={index < 3 ? 85 : 75}
                     />
                   ) : (
                     // Default placeholder when no image
