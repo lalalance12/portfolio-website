@@ -5,14 +5,22 @@ html {
 }
 
 :root {
-  --primary: #f97316; /* Vibrant orange */
-  --primary-dark: #ea580c; /* Deeper orange for depth */
-  --secondary: #FAFAFA; /* Off-white */
-  --neutral: #1A1A1A; /* Dark gray for neutral elements */
-  --background: #FAFAFA; /* Off-white background */
-  --foreground: #1A1A1A; /* Dark gray text for better contrast on off-white */
-  --foreground-muted: #666666; /* Muted text */
-  --border: #d1d5db; /* Adjust if needed */
+  --primary: #f97316;
+  /* Vibrant orange */
+  --primary-dark: #ea580c;
+  /* Deeper orange for depth */
+  --secondary: #FAFAFA;
+  /* Off-white */
+  --neutral: #1A1A1A;
+  /* Dark gray for neutral elements */
+  --background: #FAFAFA;
+  /* Off-white background */
+  --foreground: #1A1A1A;
+  /* Dark gray text for better contrast on off-white */
+  --foreground-muted: #666666;
+  /* Muted text */
+  --border: #d1d5db;
+  /* Adjust if needed */
   --border-light: #e5e7eb;
   --accent: #0d9488;
   --gradient-primary: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
@@ -35,37 +43,49 @@ html {
 
 /* Custom Animations for Liquid Effects */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(180deg);
   }
 }
 
 @keyframes float-delayed {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-15px) rotate(-180deg);
   }
 }
 
 @keyframes bounce-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
   }
+
   50% {
     transform: translateY(-10px) scale(1.1);
   }
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.25;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.5;
     transform: scale(1.2);
@@ -76,6 +96,7 @@ html {
   0% {
     transform: rotate(0deg) translateX(10px) rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg) translateX(10px) rotate(-360deg);
   }
@@ -117,8 +138,10 @@ html {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 120px; /* Account for header height + spacing */
-  scroll-margin-top: 20px; /* Additional margin for better spacing */
+  scroll-padding-top: 120px;
+  /* Account for header height + spacing */
+  scroll-margin-top: 20px;
+  /* Additional margin for better spacing */
 }
 
 /* Custom smooth scroll timing for better feel */
@@ -132,7 +155,8 @@ html {
 
 body {
   background: var(--background);
-  color: var(--foreground); /* Ensures all default text uses the new dark gray */
+  color: var(--foreground);
+  /* Ensures all default text uses the new dark gray */
   font-family: var(--font-sans), sans-serif;
   font-feature-settings: "ss01", "ss02", "cv01", "cv03";
   font-variation-settings: "wght" 400;
@@ -140,7 +164,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -156,7 +185,8 @@ a {
   color: inherit;
 }
 
-button, .button {
+button,
+.button {
   font-weight: 500;
 }
 
@@ -169,44 +199,40 @@ button, .button {
 
 /* Enhanced Footer Gradient Effects */
 .footer-gradient-bg {
-  background: #FAFAFA; /* Secondary white background */
+  background: #FAFAFA;
+  /* Secondary white background */
 }
 
 .footer-gradient-overlay-main {
   background: linear-gradient(135deg,
-    rgba(249, 115, 22, 0.05) 0%,
-    rgba(234, 88, 12, 0.1) 50%,
-    rgba(249, 115, 22, 0.2) 100%
-  );
+      rgba(249, 115, 22, 0.05) 0%,
+      rgba(234, 88, 12, 0.1) 50%,
+      rgba(249, 115, 22, 0.2) 100%);
 }
 
 .footer-gradient-overlay {
   background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(249, 115, 22, 0.05) 50%,
-    transparent 100%
-  );
+      transparent 0%,
+      rgba(249, 115, 22, 0.05) 50%,
+      transparent 100%);
 }
 
 .footer-social-gradient {
   background: linear-gradient(135deg,
-    rgba(249, 115, 22, 0.2) 0%,
-    rgba(234, 88, 12, 0.3) 100%
-  );
+      rgba(249, 115, 22, 0.2) 0%,
+      rgba(234, 88, 12, 0.3) 100%);
 }
 
 .footer-social-gradient-hover {
   background: linear-gradient(135deg,
-    rgb(249, 115, 22) 0%,
-    rgb(234, 88, 12) 100%
-  );
+      rgb(249, 115, 22) 0%,
+      rgb(234, 88, 12) 100%);
 }
 
 /* Custom radial gradient for footer background */
 .footer-radial-gradient {
   background: radial-gradient(circle at center,
-    rgba(249, 115, 22, 0.15) 0%,
-    rgba(249, 115, 22, 0.08) 40%,
-    transparent 70%
-  );
+      rgba(249, 115, 22, 0.15) 0%,
+      rgba(249, 115, 22, 0.08) 40%,
+      transparent 70%);
 }

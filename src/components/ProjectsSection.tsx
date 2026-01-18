@@ -813,10 +813,7 @@ export default function ProjectsSection() {
 
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                       <DecryptedText
-                        text="Explore my complete collection of projects, experiments,
-                        and contributions on GitHub. From machine learning models
-                        to full-stack applications, there's always something
-                        new to discover."
+                        text="Explore my complete collection of projects, experiments, and contributions on GitHub. From machine learning models to full-stack applications, there's always something new to discover."
                         speed={25}
                         maxIterations={15}
                         sequential={true}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialDropdown from "./SocialDropdown";
+import ResumeModal from "./ResumeModal";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { useScrollContext } from "@/contexts/ScrollContext";
 
@@ -16,6 +17,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [userNavigatedSection, setUserNavigatedSection] =
     useState<Section | null>(null);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const [indicatorProps, setIndicatorProps] = useState<{
     left: number;
     width: number;
@@ -290,13 +292,12 @@ export default function Header() {
 
         {/* Desktop Resume & Social */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="/Xerxes_Lompon_SoftwareEngineer.pdf"
-            download="Xerxes_Lompon_Resume.pdf"
-            className="group relative inline-flex items-center justify-center gap-2 bg-primary rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 w-10 h-10 p-0 xl:w-auto xl:h-auto xl:px-4 xl:py-2 overflow-hidden"
+          <button
+            onClick={() => setIsResumeModalOpen(true)}
+            className="group relative inline-flex items-center justify-center gap-2 bg-primary rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 w-10 h-10 p-0 xl:w-auto xl:h-auto xl:px-4 xl:py-2 overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             style={{ color: "#FFFFFF" }}
-            aria-label="Download resume"
-            title="Download Resume"
+            aria-label="Preview resume"
+            title="Preview Resume"
           >
             <svg
               className="w-5 h-5 xl:w-4 xl:h-4 flex-shrink-0"
@@ -308,14 +309,20 @@ export default function Header() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               />
             </svg>
             <span className="hidden xl:inline">Resume</span>
-          </a>
+          </button>
           <SocialDropdown />
         </div>
       </header>
+
+      {/* Resume Modal */}
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
 
       {/* Mobile Navigation Overlay */}
       <AnimatePresence>
@@ -350,12 +357,14 @@ export default function Header() {
                 </button>
               ))}
               <div className="pt-4 border-t border-border space-y-4 justify-center items-center">
-                <a
-                  href="/Xerxes_Lompon_SoftwareEngineer.pdf"
-                  download="Xerxes_Lompon_SoftwareEngineer.pdf"
-                  className="flex items-center justify-center gap-2 py-3 px-4 bg-primary rounded-lg font-medium transition-all duration-200"
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsResumeModalOpen(true);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-primary rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   style={{ color: "#FFFFFF" }}
-                  aria-label="Download resume"
+                  aria-label="Preview resume"
                 >
                   <svg
                     className="w-4 h-4"
@@ -367,11 +376,11 @@ export default function Header() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
-                  Download Resume
-                </a>
+                  View Resume
+                </button>
                 <SocialDropdown isMobile={true} />
               </div>
             </nav>

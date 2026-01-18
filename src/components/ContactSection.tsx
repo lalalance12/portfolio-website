@@ -119,7 +119,7 @@ export default function ContactSection() {
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <FadeContent blur={true} duration={1000} delay={300}>
           <motion.div
-            className="pt-40 mb-2"
+            className="mb-2"
             style={{
               y: parallaxValues.contentY,
               willChange: "transform",
