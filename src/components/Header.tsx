@@ -40,11 +40,6 @@ export default function Header() {
   const projectsRef = useRef<HTMLButtonElement>(null);
   const contactRef = useRef<HTMLButtonElement>(null);
 
-  // Cache section positions to avoid repeated DOM queries
-  const sectionPositionsRef = useRef<
-    Map<Section, { top: number; bottom: number }>
-  >(new Map());
-
   const refs = useMemo(
     () => ({
       home: homeRef,
@@ -71,43 +66,24 @@ export default function Header() {
     }, 1200);
   };
 
-  // Update section positions cache (only on resize or mount)
-  const updateSectionPositions = useCallback(() => {
-    const sections: Section[] = [
-      "home",
-      "about",
-      "skills",
-      "projects",
-      "contact",
-    ];
-    sections.forEach((sectionId) => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        sectionPositionsRef.current.set(sectionId, {
-          top: element.offsetTop,
-          bottom: element.offsetTop + element.offsetHeight,
-        });
-      }
-    });
+  // Get fresh section position (not cached) to handle dynamic content
+  const getSectionPosition = useCallback((sectionId: Section) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      return {
+        top: rect.top + window.scrollY,
+        bottom: rect.bottom + window.scrollY,
+      };
+    }
+    return null;
   }, []);
 
-  // Initialize section positions on mount and window resize
-  useEffect(() => {
-    updateSectionPositions();
-
-    const handleResize = () => {
-      updateSectionPositions();
-    };
-
-    window.addEventListener("resize", handleResize, { passive: true });
-    return () => window.removeEventListener("resize", handleResize);
-  }, [updateSectionPositions]);
-
-  // Optimized scroll detection using cached positions and shared scroll context
+  // Scroll detection using fresh positions to handle dynamic content
   useEffect(() => {
     // Don't override user navigation immediately after clicking
     if (userNavigatedSection !== null) {
-      const sectionPos = sectionPositionsRef.current.get(userNavigatedSection);
+      const sectionPos = getSectionPosition(userNavigatedSection);
       if (sectionPos) {
         const threshold = 100;
         if (
@@ -148,11 +124,11 @@ export default function Header() {
       return;
     }
 
-    // Find which section contains the check point
+    // Find which section contains the check point using fresh positions
     let currentSection: Section = "home";
 
     for (const sectionId of sections) {
-      const sectionPos = sectionPositionsRef.current.get(sectionId);
+      const sectionPos = getSectionPosition(sectionId);
       if (sectionPos) {
         // Check if the checkpoint is within this section
         if (checkPoint >= sectionPos.top && checkPoint < sectionPos.bottom) {
@@ -165,7 +141,7 @@ export default function Header() {
     if (currentSection !== targetSection) {
       setTargetSection(currentSection);
     }
-  }, [scrollY, targetSection, userNavigatedSection]);
+  }, [scrollY, targetSection, userNavigatedSection, getSectionPosition]);
 
   useEffect(() => {
     if (targetSection === null) {
