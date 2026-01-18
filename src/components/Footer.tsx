@@ -88,7 +88,7 @@ export default function Footer() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span className="text-xs text-secondary/70">
-                Available for projects
+                Available for projects, and opportunities
               </span>
             </div>
           </div>
