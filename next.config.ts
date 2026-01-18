@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Configure Turbopack root directory to fix multiple lockfiles warning
+  turbopack: {
+    root: __dirname,
+  },
+  // Configure image optimization
+  images: {
+    qualities: [75, 85],
+  },
 };
 
 export default nextConfig;
