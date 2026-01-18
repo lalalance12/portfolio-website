@@ -214,6 +214,24 @@ export default function ProjectsSection() {
       isPublic: true,
       githubUrl: "https://github.com/Web3-Iligan/LikAI",
       liveUrl: "https://s7zgf-2iaaa-aaaad-qhoyq-cai.icp0.io/",
+      images: [
+        {
+          src: "/projects/likAI/likai-intro.png",
+          title: "LikAI Introduction - Platform Overview",
+        },
+        {
+          src: "/projects/likAI/likai-chatbot.png",
+          title: "AI Chatbot - Farmer Assistance Interface",
+        },
+        {
+          src: "/projects/likAI/likai-farm-assessment.png",
+          title: "Farm Assessment - Compliance Evaluation",
+        },
+        {
+          src: "/projects/likAI/likai-milestones.png",
+          title: "Milestones - Progress Tracking",
+        },
+      ],
       features: [
         "AI chatbot using LangChain framework with Grok API",
         "Python-based AI integration for farmer onboarding",
@@ -757,7 +775,7 @@ export default function ProjectsSection() {
 
         {/* Enticing GitHub Section */}
         <FadeContent blur={true} duration={1000} delay={800}>
-          <div className="mt-16 mb-12">
+          <div className="mt-16">
             <div className="relative">
               {/* Animated background */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary-dark/5 to-primary/10 rounded-2xl blur-3xl"></div>
