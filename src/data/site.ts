@@ -5,7 +5,7 @@ export const site = {
   role: "Software Engineer",
   location: "Cagayan de Oro City, Philippines",
   email: "lompon.xerxeslancelaurenz@gmail.com",
-  url: "https://xerxeslompon.com",
+  url: "https://xerxeslompon.vercel.app",
   resume: "/Xerxes_Lompon_SoftwareEngineer.pdf",
   socials: {
     github: "https://github.com/lalalance12",

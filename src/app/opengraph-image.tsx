@@ -75,7 +75,7 @@ export default async function Image() {
             }}
           >
             <div>Full-stack web & AI products</div>
-            <div>xerxeslompon.com</div>
+            <div>xerxeslompon.vercel.app</div>
           </div>
         </div>
       </div>
