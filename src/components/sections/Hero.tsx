@@ -32,17 +32,35 @@ export default function Hero() {
 
       // Pinned exit animates ONLY the wrapper — never the same nodes as the
       // load timeline, so reversing back to the top always restores them.
-      gsap.to(exitRef.current, {
-        yPercent: -16,
-        opacity: 0,
-        ease: "power1.in",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=65%",
-          pin: true,
-          scrub: 0.5,
-        },
+      // Pinning is desktop-only: on phones/tablets the hero can be taller
+      // than the viewport, and pinning there feels stuck.
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        gsap.to(exitRef.current, {
+          yPercent: -16,
+          opacity: 0,
+          ease: "power1.in",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=65%",
+            pin: true,
+            scrub: 0.5,
+          },
+        });
+      });
+      mm.add("(max-width: 1023px)", () => {
+        gsap.to(exitRef.current, {
+          opacity: 0,
+          yPercent: -8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom 35%",
+            scrub: true,
+          },
+        });
       });
     },
     { scope: sectionRef }

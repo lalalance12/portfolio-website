@@ -48,23 +48,27 @@ export default function FeaturedStack() {
           });
         }
 
-        // When the NEXT card scrolls in, this one recedes and fades out
-        // completely so it never shows behind the card covering it.
+        // Desktop-only card stacking: when the NEXT card scrolls in, this
+        // one recedes and fades out completely so it never shows behind the
+        // card covering it. On mobile the cards scroll normally.
         const next = cards[i + 1];
         if (next) {
-          gsap.to(card, {
-            scale: 0.92,
-            autoAlpha: 0,
-            transformOrigin: "center top",
-            ease: "none",
-            scrollTrigger: {
-              trigger: next,
-              // Starts receding only once the next card is well on screen,
-              // but still fully faded before the two cards overlap.
-              start: "top 80%",
-              end: "top 30%",
-              scrub: true,
-            },
+          const mm = gsap.matchMedia();
+          mm.add("(min-width: 1024px)", () => {
+            gsap.to(card, {
+              scale: 0.92,
+              autoAlpha: 0,
+              transformOrigin: "center top",
+              ease: "none",
+              scrollTrigger: {
+                trigger: next,
+                // Starts receding only once the next card is well on screen,
+                // but still fully faded before the two cards overlap.
+                start: "top 80%",
+                end: "top 30%",
+                scrub: true,
+              },
+            });
           });
         }
       });
@@ -78,7 +82,7 @@ export default function FeaturedStack() {
         <div
           key={project.slug}
           data-card
-          className="hover:glow-fire group sticky mb-10 rounded-3xl border border-hairline bg-paper-raised p-6 transition-shadow duration-500 will-change-transform sm:p-10 md:p-12"
+          className="hover:glow-fire group mb-10 rounded-3xl border border-hairline bg-paper-raised p-6 transition-shadow duration-500 will-change-transform sm:p-10 md:p-12 lg:sticky"
           style={{ top: "13vh", zIndex: i + 1 }}
         >
           <article className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">

@@ -53,7 +53,7 @@ export default function OrbitTech() {
     <div
       ref={ref}
       aria-hidden
-      className="relative mx-auto flex size-80 items-center justify-center sm:size-[22rem]"
+      className="relative mx-auto flex size-80 max-w-full items-center justify-center sm:size-[22rem]"
     >
       {/* Glow behind the system */}
       <div className="bg-fire absolute inset-8 rounded-full opacity-15 blur-3xl" />

@@ -49,10 +49,10 @@ export default function Marquee({ children, direction = "left" }: MarqueeProps) 
   const copies = Array.from({ length: 4 }, (_, i) => i);
 
   return (
-    <div ref={ref} aria-hidden className="select-none overflow-hidden py-14">
+    <div ref={ref} aria-hidden className="select-none overflow-hidden py-8 sm:py-14">
       <div
         ref={trackRef}
-        className="flex w-max whitespace-nowrap font-display text-[7vw] font-semibold uppercase leading-none tracking-tight will-change-transform"
+        className="flex w-max whitespace-nowrap font-display text-[10vw] font-semibold uppercase leading-none tracking-tight will-change-transform sm:text-[7vw]"
       >
         {[0, 1].map((half) => (
           <div key={half} className="flex shrink-0">
