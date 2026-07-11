@@ -1,20 +1,31 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { Providers } from "@/components/Providers";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import ScrollProgress from "@/components/ScrollProgress";
+import SmoothAnchors from "@/components/SmoothAnchors";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { site } from "@/data/site";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: "Xerxes Lompon | Software Engineer",
   description:
     "Full-stack engineer specializing in React, Next.js, Laravel, and AI/ML. Built healthcare systems, publication platforms, and ML models. Based in Philippines.",
@@ -66,35 +77,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preload critical LCP image */}
-        <link
-          rel="preload"
-          as="image"
-          href="/photo1.jpg"
-          fetchPriority="high"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Xerxes Lance Lompon",
-              url: "https://xerxeslompon.com",
-              jobTitle: "Full-Stack Developer",
+              name: site.name,
+              url: site.url,
+              email: site.email,
+              jobTitle: site.role,
               description:
-                "Full-stack engineer specializing in React, Next.js, Laravel, and AI/ML",
+                "Software engineer specializing in React, Next.js, Laravel, and AI/ML",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Cagayan de Oro City",
                 addressCountry: "Philippines",
               },
-              sameAs: [
-                "https://linkedin.com/in/xerxes-lompon",
-                "https://github.com/lalalance12",
-              ],
+              sameAs: [site.socials.linkedin, site.socials.github],
               knowsAbout: [
                 "React",
                 "Next.js",
@@ -111,25 +113,27 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${montserrat.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
+        className={`${fraunces.variable} ${inter.variable} antialiased bg-paper text-ink`}
       >
         {/* Skip to content link for accessibility */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:font-medium focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-dark focus:ring-offset-2"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent-base focus:text-white focus:rounded-lg focus:font-medium focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
         >
           Skip to main content
         </a>
         <Analytics />
         <SpeedInsights />
         <ErrorBoundary>
-          <Providers>
+          <ThemeProvider>
+            <SmoothAnchors />
+            <ScrollProgress />
             <Header />
             <main id="main-content" className="min-h-[80vh]" tabIndex={-1}>
               {children}
             </main>
             <Footer />
-          </Providers>
+          </ThemeProvider>
         </ErrorBoundary>
       </body>
     </html>
