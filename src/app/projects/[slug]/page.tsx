@@ -22,11 +22,16 @@ export async function generateMetadata({
   const project = getProject((await params).slug);
   if (!project) return {};
   return {
-    title: `${project.title} — ${site.shortName}`,
+    title: project.title,
     description: project.oneLiner,
-    openGraph: project.cover
-      ? { images: [{ url: project.cover.src }] }
-      : undefined,
+    alternates: { canonical: `/projects/${project.slug}` },
+    openGraph: {
+      title: `${project.title} — ${site.shortName}`,
+      description: project.oneLiner,
+      type: "article",
+      url: `${site.url}/projects/${project.slug}`,
+      images: project.cover ? [{ url: project.cover.src }] : undefined,
+    },
   };
 }
 

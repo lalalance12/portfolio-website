@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -24,9 +24,19 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Xerxes Lompon | Software Engineer",
+  title: {
+    default: "Xerxes Lompon | Software Engineer",
+    template: "%s | Xerxes Lompon",
+  },
   description:
     "Full-stack engineer specializing in React, Next.js, Laravel, and AI/ML. Built healthcare systems, publication platforms, and ML models. Based in Philippines.",
   keywords: [
@@ -46,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://xerxeslompon.com",
+    url: site.url,
     siteName: "Xerxes Lompon Portfolio",
     title: "Xerxes Lompon - Software Engineer/Developer",
     description:
@@ -129,7 +139,7 @@ export default function RootLayout({
             <SmoothAnchors />
             <ScrollProgress />
             <Header />
-            <main id="main-content" className="min-h-[80vh]" tabIndex={-1}>
+            <main id="main-content" className="min-h-[80vh] overflow-x-clip" tabIndex={-1}>
               {children}
             </main>
             <Footer />
