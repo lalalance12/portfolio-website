@@ -22,7 +22,12 @@ export default function Contact() {
               <h3 className="mt-8 font-display text-display font-medium">
                 Let&apos;s build
                 <br />
-                <span className="text-fire italic">something together.</span>
+                <span className="text-fire-bright -mb-[0.2em] inline-block pb-[0.2em] italic">
+                  something
+                </span>{" "}
+                <span className="text-fire-bright -mb-[0.2em] inline-block pb-[0.2em] italic">
+                  together.
+                </span>
               </h3>
               <p className="mt-8 max-w-md leading-relaxed text-muted">
                 Whether it&apos;s a full-time role, a project that needs
